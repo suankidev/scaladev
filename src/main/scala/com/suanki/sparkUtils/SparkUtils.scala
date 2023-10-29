@@ -1,4 +1,3 @@
-package com.suanki
 package com.suanki.sparkUtils
 
 import org.apache.spark.sql.SparkSession
