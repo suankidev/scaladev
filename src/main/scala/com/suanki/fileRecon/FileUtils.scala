@@ -17,9 +17,16 @@ class FileUtils {
 }
 
 
-  def setParam(args: Array[String]): Map[String, String] = {
+  def setParam(args: Array[String]):JobParams = {
+    var paramsArgumnents:Map[String, String] = Map.empty
+    val listOfParam= List("runType","dataPath")
+    for(idx <- 0 until args.length){
+    paramsArgumnents += (listOfParam(idx) -> args(idx))
+    }
 
-  Map("location" -> "EUROPE", "date" -> "2023-12-30", "database" -> "mydatabase")
+    JobParams(paramsArgumnents.getOrElse("runType","stgtable"),
+      paramsArgumnents.getOrElse("dataPath","testPath")
+    )
 
 }
 

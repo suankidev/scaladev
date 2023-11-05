@@ -12,6 +12,8 @@ object BirthOfOOO extends App {
       //companion object can access private members
     }
 
+
+
     class BankAccount(initialBalance: Int) { //default visibility of initialBalance is 'private[this] initialBalance:Int'
 
       private[this] var _balance: Int = initialBalance  //private[this] belongs to this object

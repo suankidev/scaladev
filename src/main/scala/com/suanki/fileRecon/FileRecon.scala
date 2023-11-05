@@ -3,7 +3,7 @@ package com.suanki.fileRecon
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 
-class FilRecon(utils: FileUtils, spark: SparkSession, parsedArgs: Map[String, String]) {
+class FilRecon(utils: FileUtils, spark: SparkSession, parsedArgs: JobParams) {
 
   var stgQuery: String = "default stg query"
   var finalTableQuery: String = "default final query"
@@ -19,6 +19,7 @@ class FilRecon(utils: FileUtils, spark: SparkSession, parsedArgs: Map[String, St
   }
 
 
+
    def createStgDataFrame: Unit = {
 
     stgTableDF = spark.range(5).toDF("stgDF")
@@ -26,7 +27,7 @@ class FilRecon(utils: FileUtils, spark: SparkSession, parsedArgs: Map[String, St
 
    def createFinalTableDataFrame: Unit = finalTableDF = spark.range(10).toDF("finaltabledf")
 
-  def createSourDF(spark: SparkSession, initialDF: DataFrame, parsedArgs: Map[String, String]): DataFrame = {
+  def createSourDF(spark: SparkSession, initialDF: DataFrame, parsedArgs: JobParams): DataFrame = {
 
     initialDF
   }
