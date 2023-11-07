@@ -1,8 +1,6 @@
-package com.suanki
 package com.suanki.tutorials.oops
 
 import java.util.{Date => javaUtilDate}
-import java.sql.{Date => javaSqlDate}
 
 class PackageAndImport {
 
@@ -12,9 +10,9 @@ class PackageAndImport {
 
   def workWithDiffrentDates:Unit={
     val javaDate = new javaUtilDate(System.currentTimeMillis)
-    val sqlData = new javaSqlDate(2018,12,30)
-    println(javaDate)
-    println(sqlData)
+//    val sqlData = new javaSqlDate(2018,12,30)
+//    println(javaDate)
+//    println(sqlData)
   }
 
   //default import

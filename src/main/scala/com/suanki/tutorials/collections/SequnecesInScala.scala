@@ -55,7 +55,7 @@ object SequnecesInScala extends App {
 
   //arrays and seq
 
-  val numberSeq:Seq[Int] = numbers
+  val numberSeq:Seq[Int] = numbers.toSeq
 
   println(numberSeq) //wrappedArry : implicit conversion
 

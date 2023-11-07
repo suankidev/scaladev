@@ -1,4 +1,3 @@
-package com.suanki
 package com.suanki.tutorials.Exercise
 
 import org.apache.spark.sql.{DataFrame, SparkSession}

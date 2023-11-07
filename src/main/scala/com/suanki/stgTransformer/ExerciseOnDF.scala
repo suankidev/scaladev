@@ -21,8 +21,6 @@ class ExerciseOnDF(spark:SparkSession, util:CommonUtils) {
       isSchema = false
     )
 
-    moviesDF
-    moviesDF
 
     val totalProfitDf = moviesDF.withColumn("total_profit",
       col("US_Gross") + col("Worldwide_Gross"))
