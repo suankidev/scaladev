@@ -10,10 +10,9 @@ object ValuePreposition {
   }
 
 
-
   def code(args:Array[String]):Unit={
 
-    //rarly used
+    //rarely used
     type Structure ={
       def wattPerSecond:Int
       def turnOn(): Unit
@@ -29,12 +28,13 @@ object ValuePreposition {
 //   final case class Device(wattPerSecond:Int, turnDeviceOn: () => Unit,
 //                           turnDeviceOff: () => Unit)
 
-//    class EnergyMeter(device:Structure){
+//  class EnergyMeter(device:Structure){
     class EnergyMeter(device:Device){
 
       private[this] var turnedOnAtMills:Long = 0L
       private[this] var _wattConsumedInTotal:Double = 0L
       def wattsConsumedInTotal:Double = _wattConsumedInTotal
+     //private[this] def wattsConsumedInTotal(newValue:Double):Unit = _wattConsumedInTotal = newValue
       private[this] def wattsConsumedInTotal_=(newValue:Double):Unit = _wattConsumedInTotal = newValue
 
       def startMeasuring():Unit = {
@@ -46,7 +46,7 @@ object ValuePreposition {
         device.turnOff()
         val duration = System.currentTimeMillis() - turnedOnAtMills
         val durationInSeconds = duration.toDouble / 1000
-//        _wattConsumedInTotal += ( wattPerSecond * durationInSeconds)
+        //_wattConsumedInTotal += ( device.wattPerSecond * durationInSeconds)
         wattsConsumedInTotal_=(_wattConsumedInTotal + ( device.wattPerSecond * durationInSeconds))
       }
 
@@ -121,20 +121,17 @@ object ValuePreposition {
 
     val energyMeter=new EnergyMeter(lightBulb)
 
-
 //    val energyMeter=EnergyMeter(lightBulb)
 
     energyMeter.startMeasuring()
     Thread.sleep(1000)
     energyMeter.stopMeasuring()
     println(energyMeter.wattsConsumedInTotal)
-//
+
 //    energyMeter.startMeasuring()
 //    Thread.sleep(1000)
 //    energyMeter.stopMeasuring()
 //    println(energyMeter.wattsConsumedInTotal)
-
-
 
   }
 

@@ -32,4 +32,36 @@ class FileUtils {
 
   def getTableType(tableType: String): Boolean = if (tableType == "stg") false else true
 
+
+
+  def readDF(spark: SparkSession): Unit = {
+
+    val initialDF = spark.range(15).toDF("sourcefiledf")
+
+//    sourceTableDF = createSourDF(spark, initialDF, parsedArgs)
+
+  }
+
+  def buildWhere(tableType: String,spark:SparkSession): String = {
+    var whereClause = "1=1 and "
+
+    fetchPartitionCols("tablename", spark).foreach(
+      element => element match {
+
+        case "location" => whereClause = s"$whereClause location='EUR'"
+
+        case "date" => whereClause = s"$whereClause location='EUR'"
+      }
+    )
+    whereClause
+  }
+
+
+  def buildSelect(tableType: String): String =
+    if (getTableType(tableType)) {
+      s"select * from finaltable"
+    } else {
+      s"select * from stgTable"
+    }
+
 }

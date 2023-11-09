@@ -7,8 +7,7 @@ object MyTest {
     println("=" * 30)
 
     println(addToX(10)(20))
-    addToy(10)(40)
-
+    addToy(2)(40)
     println("=" * 30)
   }
 
@@ -22,5 +21,21 @@ object MyTest {
     1 to x foreach( _ =>
       println(y))
   }
+
+
+  def f(g:Int => String):Unit={
+    //g(x)
+    println(g(45454))
+  }
+
+  def g(x:Int):String = s"${Console.MAGENTA} x ${Console.RESET}"
+
+  f(g)
+
+
+
+
+
+
 
 }
