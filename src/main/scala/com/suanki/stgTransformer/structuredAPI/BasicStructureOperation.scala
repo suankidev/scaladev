@@ -5,7 +5,6 @@ import org.apache.spark.sql.SparkSession
 
 object BasicStructureOperation {
 
-
   def main(args: Array[String]): Unit = {
 
     println("="*30)
@@ -16,6 +15,7 @@ object BasicStructureOperation {
 
     readFightDF(util, spark)
 
+    Thread.sleep((900000))
     println()
     println("="*30)
   }
@@ -33,10 +33,7 @@ object BasicStructureOperation {
 
 //    flightData2015.show()
 //    flightData2015.take(10).foreach(row => println(row.length, row(0), row.mkString("-") ) )
-
-
-    flightData2015.sort("count").explain()
-
+    flightData2015.sort("count").show(20, true)
 
   }
 

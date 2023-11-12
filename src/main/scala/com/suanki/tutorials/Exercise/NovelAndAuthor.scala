@@ -1,4 +1,3 @@
-package com.suanki
 package com.suanki.tutorials.Exercise
 
 object NovelAndAuthor extends App {

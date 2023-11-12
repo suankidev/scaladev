@@ -16,7 +16,6 @@ object FileRecon{
 
      FileResultPrinter.showResults(tableRecon.getStgDF(), tableRecon.getFinalTabDF(),fileRecon.getSourceDF())
 
-
   }
 
 }
@@ -35,8 +34,6 @@ class FilRecon(utils: FileUtils, spark: SparkSession, parsedArgs: JobParams,read
     this(utils, utils.getSparkSession(), utils.setParam(args),readerType)
 
   }
-
-
 
 
 }
