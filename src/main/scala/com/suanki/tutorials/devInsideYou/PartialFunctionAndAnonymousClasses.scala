@@ -3,7 +3,6 @@ package com.suanki.tutorials.devInsideYou
 object PartialFunctionAndAnonymousClasses {
 
 
-
   def main(args:Array[String])={
 
 
@@ -20,7 +19,6 @@ object PartialFunctionAndAnonymousClasses {
 
     val myVal:(Int,Int,Int)=>String=(v1,v2,v3)=>s"$v1 $v2 $v3"
     val myVal1=(x:Int,y:Int,z:Int)=>s"$x $y $z"
-
 
 
 //     val totalFunction:Int => String = x => s"${Console.MAGENTA} ${x.toString} ${Console.RESET}"
@@ -58,16 +56,6 @@ object PartialFunctionAndAnonymousClasses {
     println(totalFunctionWiithoutSyntaticSugar(randomNumber))
 
     println(partitialFunctionWiithoutSyntaticSugar(4))
-
-
-
-
-
-
-
-
-
-
 
     //what partial function is used for
 
