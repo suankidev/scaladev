@@ -28,11 +28,11 @@ object BasicStructureOperation {
       )
 
 
-    val util: SparkUtils = new SparkUtils()
-    val spark: SparkSession = util.getSparkSession()
-    val flightDf = spark.read.format("csv").option("header", "true").load(flightPath)
-    val retailDf = spark.read.format("csv").option("header", "true")
-      .schema(retailSchema).load(retailPath)
+//    val util: SparkUtils = new SparkUtils()
+//    val spark: SparkSession = util.getSparkSession()
+//    def flightDf = spark.read.format("csv").option("header", "true").load(flightPath)
+//    def retailDf = spark.read.format("csv").option("header", "true")
+//      .schema(retailSchema).load(retailPath)
 
     //    dataSetsTypeSafe(readFightDF(util, spark),spark)
     //    SchemaOnReadAndSchema(spark)
@@ -42,9 +42,24 @@ object BasicStructureOperation {
     // dataSources(spark,flightDf, retailDf)
     // Thread.sleep((5000) )
 
-    readJdbc(spark)
+
+//    readJdbc(spark)
+
+    manipulation()
+
     println()
     println("=" * 30)
+  }
+
+
+  def manipulation():Unit={
+//    val testString = "This is test string"
+//    println(testString.split(" ").reverse.mkString(" "))
+//    println(testString)
+//    val testList = List("this","is","another")
+//    testList.map(row => row.toUpperCase).foreach(println)
+//    testList.flatMap(row => row.toUpperCase).foreach(println)
+
   }
 
 
@@ -63,17 +78,12 @@ object BasicStructureOperation {
                     , max(cast(product_id as int)) as maxid from products""")
       .load())
 
-
-    import org.apache.spark.sql.types.{IntegerType}
-
     val minMaxCasted = minMax.select(col("minid").cast("int"), col("maxid").cast("int"))
 
     val collectMinMax = minMaxCasted.head()
     val lowerBound = collectMinMax.getAs[Int]("minid")
     val upperBound = collectMinMax.getAs[Int]("maxid")
 
-    println("DEBUG" * 20)
-    collectMinMax foreach println
 
     // println(collectMinMax, lowerBound, upperBound)
 
