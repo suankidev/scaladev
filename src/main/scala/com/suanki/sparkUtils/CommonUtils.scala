@@ -1,7 +1,19 @@
 package com.suanki.sparkUtils
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.log4j.Logger
 
+object AppLogger extends Serializable {
+
+  def getAppLogger(loggerName: Any): org.apache.log4j.Logger = {
+    lazy val appLogger = org.apache.log4j.Logger.getLogger(loggerName.getClass)
+    appLogger
+  }
+
+  def getInfoMsg(msg:Any,appLogger:Logger):Unit = appLogger.info(s"${Console.GREEN}${msg}${Console.RESET}")
+  def getWarnMsg(msg:Any,appLogger:Logger):Unit = appLogger.info(s"${Console.GREEN}${msg}${Console.RESET}")
+
+}
 class CommonUtils(spark:SparkSession) {
 
 
