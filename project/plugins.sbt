@@ -11,8 +11,6 @@ addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.6")
 
 //Global / onChangedBuildSource := ReloadOnSourceChanges // IgnoreSourceChanges //ReloadOnSourceChanges
 
-
 //scalfmt
-
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
