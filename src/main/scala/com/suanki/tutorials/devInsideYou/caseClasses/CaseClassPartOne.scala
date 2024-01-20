@@ -1,26 +1,23 @@
 package com.suanki.tutorials.devInsideYou.caseClasses
 
-
-final class Human(val name:String,  //default private[this] val name
-                  val age:Int,
-                  val isMale:Boolean
-                 ) extends Product {
-  def isFemale:Boolean = !isMale
+final class Human(
+    val name: String, // default private[this] val name
+    val age: Int,
+    val isMale: Boolean
+) extends Product {
+  def isFemale: Boolean = !isMale
 
   override def toString: String = s"Human($name, $age, $isMale)"
 
   override def equals(obj: Any): Boolean = obj match {
-    case that:Human =>
-      this.name == that.name &&  this.age == that.age && this.isMale == that.isMale
-    case _  =>false
+    case that: Human =>
+      this.name == that.name && this.age == that.age && this.isMale == that.isMale
+    case _ => false
   }
 
+  override def hashCode(): Int = 41 * (41 * (41 * this.name.hashCode) + this.name.hashCode) + this.isMale.hashCode
 
-  override def hashCode(): Int =41 * (41* (41* this.name.hashCode) +   this.name.hashCode) + this.isMale.hashCode
-
-  def copy(name:String = this.name
-           ,age:Int = this.age
-           ,isMail:Boolean=this.isMale):Human = new Human(name, age, isMale)
+  def copy(name: String = this.name, age: Int = this.age, isMail: Boolean = this.isMale): Human = new Human(name, age, isMale)
 
   override def productArity: Int = 3
 
@@ -33,68 +30,60 @@ final class Human(val name:String,  //default private[this] val name
 
   override def canEqual(that: Any): Boolean = that.isInstanceOf[Human]
 
-
   override def productPrefix: String = Human.toString
 }
 
 //object Human extends Function3[String,Int,Boolean,Human]{
-object Human extends ((String,Int,Boolean) => Human ){
+object Human extends ((String, Int, Boolean) => Human) {
 
-  override  def apply(
-             name:String,  //default private[this] val name
-             age:Int,
-             isMale:Boolean
-           ):Human = new Human(name,age,isMale)
-
+  override def apply(
+      name: String, // default private[this] val name
+      age: Int,
+      isMale: Boolean
+  ): Human = new Human(name, age, isMale)
 
   override def toString: String = s"Human"
 }
 
-final case class Person( name:String, age:Int, isMale:Boolean){
-def isFemale:Boolean = !isMale
-
+final case class Person(name: String, age: Int, isMale: Boolean) {
+  def isFemale: Boolean = !isMale
 
 }
 
 object CaseClassPartOne {
 
-
-  def main(args:Array[String]):Unit={
-    println("="*50)
+  def main(args: Array[String]): Unit = {
+    println("=" * 50)
     code(args)
-    println("="*50)
+    println("=" * 50)
   }
 
-  def code(args:Array[String]):Unit={
+  def code(args: Array[String]): Unit = {
 
 //person
-    val person = Person("Bob",age=27, isMale = true)
+    val person = Person("Bob", age = 27, isMale = true)
     println(person.isMale)
     println(person.age)
     println(person)
     println(Person)
-    println(Person.isInstanceOf[Function3[_, _, _, _]])  //instance of 3
-    val personFactory:(String,Int,Boolean)=>Person = Person
+    println(Person.isInstanceOf[Function3[_, _, _, _]]) // instance of 3
+    val personFactory: (String, Int, Boolean) => Person = Person
 
-    println(person == Person("Bob",age=27,true))
-    val personOne:Set[Person] = Set(
+    println(person == Person("Bob", age = 27, true))
+    val personOne: Set[Person] = Set(
       person,
-      Person("Bob",age=27, isMale = true),
-      Person("Bob",age=28, isMale = true),
-      Person("Bob",age=29, isMale = true),
-      Person("Bob",age=30, isMale = true),
-      Person("Bob",age=31, isMale = true),
-      Person("Bob",age=32, isMale = true)
+      Person("Bob", age = 27, isMale = true),
+      Person("Bob", age = 28, isMale = true),
+      Person("Bob", age = 29, isMale = true),
+      Person("Bob", age = 30, isMale = true),
+      Person("Bob", age = 31, isMale = true),
+      Person("Bob", age = 32, isMale = true)
     )
 
+    println("contain=>" + personOne.contains(Person("Bob", age = 28, isMale = true)))
+    println("contain=>" + personOne.contains(Person("Bob", age = 33, isMale = true)))
 
-
-
-    println("contain=>"+personOne.contains(Person("Bob",age=28, isMale = true)))
-    println("contain=>"+personOne.contains(Person("Bob",age=33, isMale = true)))
-
-
-    println(person.copy(name="sujeet"))
+    println(person.copy(name = "sujeet"))
 
     println(person.isInstanceOf[Product])
     println(person.productElement(0))
@@ -102,41 +91,40 @@ object CaseClassPartOne {
     println(person.productPrefix)
     println(person.productIterator.mkString(", "))
 
-
     person match {
-      case Person(n,a,i) => println(s"Hello $n, $a, $i")
+      case Person(n, a, i) => println(s"Hello $n, $a, $i")
     }
 
-    //human
-    val prnt="="*50
+    // human
+    val prnt = "=" * 50
     println(s"${Console.MAGENTA}$prnt${Console.RESET}")
 
     //    val human = new Human("Bob",age=27, isMale = true)
-    val human = Human("Bob",age=27, isMale = true)  //will with object
-    println(human.isMale)  //not accessible, as these are not field values
+    val human = Human("Bob", age = 27, isMale = true) // will with object
+    println(human.isMale) // not accessible, as these are not field values
     println(human.age)
     println(human.name)
     println(human)
     println(Human)
     println(Human.isInstanceOf[Function3[_, _, _, _]])
-    val humanFactory:(String,Int,Boolean)=>Human = Human
+    val humanFactory: (String, Int, Boolean) => Human = Human
     // println(humanFactory)
-    println(human == Human("Bob",age=27,true))
+    println(human == Human("Bob", age = 27, true))
 
-    val HumanSet:Set[Human] = Set(
-        human,
-        Human("Bob",age=27, isMale = true),
-        Human("Bob",age=28, isMale = true),
-        Human("Bob",age=29, isMale = true),
-        Human("Bob",age=30, isMale = true),
-        Human("Bob",age=31, isMale = true),
-        Human("Bob",age=32, isMale = true)
+    val HumanSet: Set[Human] = Set(
+      human,
+      Human("Bob", age = 27, isMale = true),
+      Human("Bob", age = 28, isMale = true),
+      Human("Bob", age = 29, isMale = true),
+      Human("Bob", age = 30, isMale = true),
+      Human("Bob", age = 31, isMale = true),
+      Human("Bob", age = 32, isMale = true)
     )
 
-    println("contain=>"+HumanSet.contains(Human("Bob",age=28, isMale = true)))
-    println("contain=>"+HumanSet.contains(Human("Bob",age=33, isMale = true)))
+    println("contain=>" + HumanSet.contains(Human("Bob", age = 28, isMale = true)))
+    println("contain=>" + HumanSet.contains(Human("Bob", age = 33, isMale = true)))
 
-    println(human.copy(name="sujeet"))
+    println(human.copy(name = "sujeet"))
 
     println(human.isInstanceOf[Product])
     println(human.productElement(0))
@@ -148,17 +136,15 @@ object CaseClassPartOne {
 //      case Human(n,a,i) => println(s"Hello $n, $a, $i")
 //    }
 
-
     println()
 
-println(Set().getClass)
-println(Set(1).getClass)
-println(Set(1,2).getClass)
-println(Set(1,2,3).getClass)
-println(Set(1,2,3,4).getClass)
-println(Set(1,2,3,4,5).getClass)
-println(Set(1,2,3,4,5,6).getClass)
-
+    println(Set().getClass)
+    println(Set(1).getClass)
+    println(Set(1, 2).getClass)
+    println(Set(1, 2, 3).getClass)
+    println(Set(1, 2, 3, 4).getClass)
+    println(Set(1, 2, 3, 4, 5).getClass)
+    println(Set(1, 2, 3, 4, 5, 6).getClass)
 
   }
 }

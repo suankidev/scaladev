@@ -16,17 +16,18 @@ object BasicStructureOperation {
     println()
 
     val retailSchema =
-      StructType(List(
-        StructField("InvoiceNo", IntegerType, nullable = true),
-        StructField("StockCode", StringType, nullable = true),
-        StructField("Description", StringType, nullable = true),
-        StructField("Quantity", IntegerType, nullable = true),
-        StructField("InvoiceDate", TimestampType, nullable = true),
-        StructField("UnitPrice", DoubleType, nullable = true),
-        StructField("CustomerID", StringType, nullable = true),
-        StructField("Country", StringType, nullable = true))
+      StructType(
+        List(
+          StructField("InvoiceNo", IntegerType, nullable = true),
+          StructField("StockCode", StringType, nullable = true),
+          StructField("Description", StringType, nullable = true),
+          StructField("Quantity", IntegerType, nullable = true),
+          StructField("InvoiceDate", TimestampType, nullable = true),
+          StructField("UnitPrice", DoubleType, nullable = true),
+          StructField("CustomerID", StringType, nullable = true),
+          StructField("Country", StringType, nullable = true)
+        )
       )
-
 
 //    val util: SparkUtils = new SparkUtils()
 //    val spark: SparkSession = util.getSparkSession()
@@ -42,7 +43,6 @@ object BasicStructureOperation {
     // dataSources(spark,flightDf, retailDf)
     // Thread.sleep((5000) )
 
-
 //    readJdbc(spark)
 
     manipulation()
@@ -51,8 +51,7 @@ object BasicStructureOperation {
     println("=" * 30)
   }
 
-
-  def manipulation():Unit={
+  def manipulation(): Unit = {
 //    val testString = "This is test string"
 //    println(testString.split(" ").reverse.mkString(" "))
 //    println(testString)
@@ -62,41 +61,45 @@ object BasicStructureOperation {
 
   }
 
-
   def readJdbc(spark: SparkSession): Unit = {
-    val url = raw"jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL"
+    val url    = raw"jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL"
     val driver = raw"oracle.jdbc.driver.OracleDriver"
 
-    //parallel load
-    val minMax = (spark.read.format("jdbc")
+    // parallel load
+    val minMax = (spark.read
+      .format("jdbc")
       .option("url", url)
       .option("user", "suanki")
       .option("driver", driver)
       .option("password", "Sniper#123")
-      .option("query",
+      .option(
+        "query",
         s"""select cast(0 as int) as minid
-                    , max(cast(product_id as int)) as maxid from products""")
+                    , max(cast(product_id as int)) as maxid from products"""
+      )
       .load())
 
     val minMaxCasted = minMax.select(col("minid").cast("int"), col("maxid").cast("int"))
 
     val collectMinMax = minMaxCasted.head()
-    val lowerBound = collectMinMax.getAs[Int]("minid")
-    val upperBound = collectMinMax.getAs[Int]("maxid")
-
+    val lowerBound    = collectMinMax.getAs[Int]("minid")
+    val upperBound    = collectMinMax.getAs[Int]("maxid")
 
     // println(collectMinMax, lowerBound, upperBound)
 
-    val productDF1 = (spark.read.format("jdbc")
+    val productDF1 = (spark.read
+      .format("jdbc")
       .option("url", url)
       .option("driver", driver)
       .option("user", "suanki")
       .option("password", "Sniper#123")
-      .option("dbtable", "products").load())
+      .option("dbtable", "products")
+      .load())
 
-    productDF1.rdd.getNumPartitions //1
+    productDF1.rdd.getNumPartitions // 1
 
-    val productDF = (spark.read.format("jdbc")
+    val productDF = (spark.read
+      .format("jdbc")
       .option("url", url)
       .option("driver", driver)
       .option("user", "suanki")
@@ -112,47 +115,50 @@ object BasicStructureOperation {
       .load())
 
     productDF.where(col("product_id") === 1).show()
-    productDF.rdd.getNumPartitions //8
+    productDF.rdd.getNumPartitions // 8
 
-
-    val productDF2 = (spark.read.format("jdbc")
+    val productDF2 = (spark.read
+      .format("jdbc")
       .option("url", url)
       .option("driver", driver)
       .option("user", "suanki")
       .option("password", "Sniper#123")
-      .option("query",
+      .option(
+        "query",
         """select product_id, product_name, description, standard_cost,list_price,
-                CATEGORY_ID from products""".stripMargin)
+                CATEGORY_ID from products""".stripMargin
+      )
       .option("numPartitions", "10")
       .option("fetchsize", "20")
       .load())
 
     productDF2.where(col("product_id") === 1).show()
-    productDF2.rdd.getNumPartitions //1
+    productDF2.rdd.getNumPartitions // 1
 
   }
 
   def dataSources(spark: SparkSession, frame: sql.DataFrame, frame1: sql.DataFrame): Unit = {
 
-
     val df = spark.read.text(raw"src/main/resources/data/sample_text.txt")
 
     df.show(10, false)
 
-    //find no of time spark come in file sample_text.txt
+    // find no of time spark come in file sample_text.txt
 
-    df.withColumn("splitted_col", split(col("value"), " ")).withColumn(
-      "exploded_cols", explode(col("splitted_col")))
-      .where(lower(expr("exploded_cols")) === "spark").select("exploded_cols").show(false)
+    df.withColumn("splitted_col", split(col("value"), " "))
+      .withColumn("exploded_cols", explode(col("splitted_col")))
+      .where(lower(expr("exploded_cols")) === "spark")
+      .select("exploded_cols")
+      .show(false)
 
+    val dfRdd =
+      spark.sparkContext.textFile(raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt")
 
-    val dfRdd = spark.sparkContext.textFile(raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt")
-
-
-    val flight = spark.sparkContext.textFile(raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\flight_data\2010-summary.csv")
+    val flight = spark.sparkContext.textFile(
+      raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\flight_data\2010-summary.csv"
+    )
     val myCollection = "Spark The Definitive Guide : Big Data Processing Made Simple"
       .split(" ")
-
 
     //
     //    val words = spark.sparkContext.parallelize(myCollection, 2)
@@ -163,25 +169,22 @@ object BasicStructureOperation {
     //    words.filter(row => row.startsWith("S")).count() //2
     //
 
-
   }
-
 
   def workingWithBoolean(session: SparkSession, flightDf: sql.DataFrame, retailDf: sql.DataFrame): Unit = {
 
     retailDf.printSchema()
 
-    retailDf.where(col("invoiceNo").equalTo(536365))
+    retailDf
+      .where(col("invoiceNo").equalTo(536365))
       .select("invoiceno", "description")
     //      .show()
 
-
-    val priceFilter = col("unitPrice") > 600
-    val DOTCodeFilter = col("StockCode") === "DOT"
-    val stockCodeFilter = col("stockCode").isin("DOT")
-    val descriptionFilter = col("description").contains("postage")
+    val priceFilter             = col("unitPrice") > 600
+    val DOTCodeFilter           = col("StockCode") === "DOT"
+    val stockCodeFilter         = col("stockCode").isin("DOT")
+    val descriptionFilter       = col("description").contains("postage")
     val stockCodeFilterMultiple = col("stockCode").isin("85123A", "71053")
-
 
     retailDf.where(stockCodeFilter)
     //      .show()
@@ -189,9 +192,8 @@ object BasicStructureOperation {
     retailDf.where(priceFilter || descriptionFilter).where(stockCodeFilter)
     //      .show()
 
-
     retailDf.select("stockCode").show(5)
-    //selecting multiple stockCode
+    // selecting multiple stockCode
 
     retailDf.filter(stockCodeFilterMultiple)
     //      .show()
@@ -200,56 +202,50 @@ object BasicStructureOperation {
 
   def convertingToSparkTypesLiterals(session: SparkSession, flightDF: DataFrame, retailDf: DataFrame): Unit = {
 
-
     flightDF.select(functions.col("*"), functions.lit(1).alias("one"))
 
-    //adding column
+    // adding column
     flightDF.withColumn("whereCounGreateThan30", col("count") > 10)
 
-    //drop
-    flightDF.drop("dest_country_name", "test") //no error even column 'test' does not exists
+    // drop
+    flightDF.drop("dest_country_name", "test") // no error even column 'test' does not exists
 
-    //distinct and dropDuplicates
+    // distinct and dropDuplicates
     flightDF.select("dest_country_name", "ORIGIN_COUNTRY_NAME").distinct()
     flightDF.dropDuplicates(Seq("dest_country_name", "ORIGIN_COUNTRY_NAME"))
     flightDF.dropDuplicates("dest_country_name", "ORIGIN_COUNTRY_NAME")
 
-
-
-    //taking sample data
+    // taking sample data
     flightDF.sample(false, 0.5, 2)
 
-
-    //union
+    // union
     val schema = flightDF.schema
     val newRows = Seq(
       Row("New Country", "Other Country", 5L),
       Row("New Country 2", "Other Country 3", 1L)
     )
     val parallelizedRows = session.sparkContext.parallelize(newRows)
-    val newDF = session.createDataFrame(parallelizedRows, schema)
+    val newDF            = session.createDataFrame(parallelizedRows, schema)
     flightDF.union(newDF)
 
-
-    //sort and orderBy
+    // sort and orderBy
     flightDF.orderBy(col("count").desc)
 
-
-    //limit
+    // limit
     flightDF.limit(10)
 
-    //repartition vs coalesce
-    println(s"SUJEET: ===> ${flightDF.rdd.getNumPartitions}") //1
+    // repartition vs coalesce
+    println(s"SUJEET: ===> ${flightDF.rdd.getNumPartitions}") // 1
     //    session.conf.set("spark.sql.shuffle.partitions",5)
-    println(s"SUJEET: ===> ${flightDF.rdd.getNumPartitions}") //1
+    println(s"SUJEET: ===> ${flightDF.rdd.getNumPartitions}") // 1
 
-    val flightDFPartitioned = flightDF.repartition(col("dest_country_name")) //will break in 200
+    val flightDFPartitioned = flightDF.repartition(col("dest_country_name")) // will break in 200
 
     println(s"SUJEET: ===> ${flightDFPartitioned.rdd.getNumPartitions}") // 200
 
-    val flightDFPartitionedFive = flightDF.repartition(5, col("dest_country_name")) //5
+    val flightDFPartitionedFive = flightDF.repartition(5, col("dest_country_name")) // 5
     println(s"SUJEET: ===> ${flightDFPartitionedFive.rdd.getNumPartitions}")
-    println(s"SUJEET: ===> ${flightDFPartitionedFive.coalesce(2).rdd.getNumPartitions}") //2
+    println(s"SUJEET: ===> ${flightDFPartitionedFive.coalesce(2).rdd.getNumPartitions}") // 2
 
   }
 
@@ -260,15 +256,14 @@ object BasicStructureOperation {
     //    println(myRow(0))
     //    println(myRow.asInstanceOf[String])
     //    println(myRow.getLong(0))
-    val myManualSchema = new StructType(Array(
-      new StructField("some", StringType, true),
-      new StructField("col", StringType, true),
-      new StructField("names", LongType, false)))
+    val myManualSchema = new StructType(
+      Array(new StructField("some", StringType, true), new StructField("col", StringType, true), new StructField("names", LongType, false))
+    )
 
     val myRows = Seq(Row("Hello", null, 1L))
 
     val myRDD = sparkSession.sparkContext.parallelize(myRows)
-    val myDf = sparkSession.createDataFrame(myRDD, myManualSchema)
+    val myDf  = sparkSession.createDataFrame(myRDD, myManualSchema)
     myDf.show()
 
     import sparkSession.implicits._
@@ -280,7 +275,6 @@ object BasicStructureOperation {
 
   }
 
-
   def SchemaOnReadAndSchema(sparkSession: SparkSession): Unit = {
 
     val flightDf = sparkSession.read.format("csv").load(flightPath)
@@ -291,41 +285,40 @@ object BasicStructureOperation {
     //
     //   println( flightDf.schema)
 
-    //defining a Schema
+    // defining a Schema
 
     val flightSchema = StructType(
-      List(StructField("DEST_COUNTRY_NAME", StringType, nullable = true),
+      List(
+        StructField("DEST_COUNTRY_NAME", StringType, nullable = true),
         StructField("ORIGIN_COUNTRY_NAME", StringType, nullable = true),
         StructField("count", LongType, nullable = true)
       )
     )
 
-    val flightDFWithSchema = sparkSession.read.format("csv").option("header", "true")
-      .schema(flightSchema).load(flightPath)
+    val flightDFWithSchema = sparkSession.read
+      .format("csv")
+      .option("header", "true")
+      .schema(flightSchema)
+      .load(flightPath)
 
     flightDFWithSchema.printSchema()
     println(flightDFWithSchema.schema)
 
     flightDFWithSchema.show(5)
 
-
   }
 
-
-  case class Flight(dest_country_name: String,
-                    origin_country_name: String,
-                    count: BigInt
-                   )
+  case class Flight(dest_country_name: String, origin_country_name: String, count: BigInt)
 
   def readFightDF(utils: SparkUtils, session: SparkSession): Dataset[Flight] = {
-    val option: Map[String, String] = Map("inferSchema" -> "true", "header" -> "true",
-      "mode" -> "permissive")
+    val option: Map[String, String] = Map("inferSchema" -> "true", "header" -> "true", "mode" -> "permissive")
     import session.implicits._
     val path: String = raw"src/main/resources/data/flight_data/2015-summary.csv"
 
-
-    val flightData2015 = session.read.format("csv")
-      .options(option).load(path)
+    val flightData2015 = session.read
+      .format("csv")
+      .options(option)
+      .load(path)
 
     flightData2015.as[Flight]
 
@@ -334,13 +327,11 @@ object BasicStructureOperation {
     //  flightData2015.sort("count").show(20, true)
   }
 
-
   def dataSetsTypeSafe(df: Dataset[Flight], sparkSession: SparkSession): Unit = {
 
     df.show(5, false)
 
     df.filter(f => f.dest_country_name == "United States").show()
   }
-
 
 }

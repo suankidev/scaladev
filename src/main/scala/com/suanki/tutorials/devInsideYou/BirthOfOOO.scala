@@ -2,23 +2,20 @@ package com.suanki.tutorials.devInsideYou
 
 object BirthOfOOO extends App {
 
-
   val d: Int => Int = x => x + 10
-
 
   def code(args: Array[String]) = {
 
     object BankAccount {
-      //companion object can access private members
+      // companion object can access private members
     }
 
+    class BankAccount(initialBalance: Int) { // default visibility of initialBalance is 'private[this] initialBalance:Int'
 
-    class BankAccount(initialBalance: Int) { //default visibility of initialBalance is 'private[this] initialBalance:Int'
-
-      private[this] var _balance: Int = initialBalance //private[this] belongs to this object
+      private[this] var _balance: Int = initialBalance // private[this] belongs to this object
 
       def withdraw(amount: Int): Unit = {
-        //every time we calling _balance actually we are calling ==> this._balance
+        // every time we calling _balance actually we are calling ==> this._balance
         if (this._balance >= amount) {
           this._balance = this._balance - amount
         } else
@@ -35,9 +32,7 @@ object BirthOfOOO extends App {
 
       def balance: Int = _balance
 
-
     }
-
 
     val bankAccount1 = new BankAccount(initialBalance = 100)
     val bankAccount2 = new BankAccount(initialBalance = 1000)
@@ -46,7 +41,6 @@ object BirthOfOOO extends App {
 
     println(bankAccount1.balance)
     println()
-
 
     def makeTransfer(from: BankAccount, amount: Int, to: BankAccount): Unit = {
       from.withdraw(amount)
@@ -58,9 +52,7 @@ object BirthOfOOO extends App {
 
     makeTransfer(bankAccount1, 10, bankAccount2)
 
-
   }
-
 
   println("==" * 30)
 

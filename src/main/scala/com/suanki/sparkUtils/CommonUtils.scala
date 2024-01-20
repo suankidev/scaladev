@@ -10,36 +10,32 @@ object AppLogger extends Serializable {
     appLogger
   }
 
-  def getInfoMsg(msg:Any,appLogger:Logger):Unit = appLogger.info(s"${Console.GREEN}${msg}${Console.RESET}")
-  def getWarnMsg(msg:Any,appLogger:Logger):Unit = appLogger.info(s"${Console.GREEN}${msg}${Console.RESET}")
+  def getInfoMsg(msg: Any, appLogger: Logger): Unit = appLogger.info(s"${Console.GREEN}${msg}${Console.RESET}")
+  def getWarnMsg(msg: Any, appLogger: Logger): Unit = appLogger.info(s"${Console.GREEN}${msg}${Console.RESET}")
 
 }
-class CommonUtils(spark:SparkSession) {
+class CommonUtils(spark: SparkSession) {
 
-
-  def readDF(path: String,filetype:String="parquet", opt: Map[String, String], isSchema: Boolean = false, dfSchema: String="a b c"):DataFrame = {
+  def readDF(path: String, filetype: String = "parquet", opt: Map[String, String], isSchema: Boolean = false, dfSchema: String = "a b c"): DataFrame = {
 
     println(s"path: $path")
     if (isSchema) {
-      spark.read.format(filetype).options(opt)
+      spark.read
+        .format(filetype)
+        .options(opt)
         .schema(dfSchema)
         .load(path)
-    }
-    else
+    } else
       spark.read.format(filetype).options(opt).load(path)
-
 
   }
 
+  def readDFWithFileName(file_name: String) = {
 
-  def readDFWithFileName(file_name:String)={
-
-    spark.read.format("json").options(Map("inferSchema" -> "true", "header" -> "true"))
+    spark.read
+      .format("json")
+      .options(Map("inferSchema" -> "true", "header" -> "true"))
       .load(raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\${file_name}.json")
   }
 
-
 }
-
-
-

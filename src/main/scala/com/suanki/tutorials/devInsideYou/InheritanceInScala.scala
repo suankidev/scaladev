@@ -1,6 +1,5 @@
 package com.suanki.tutorials.devInsideYou
 
-
 trait Device {
 
   val wattPerSecond: Double
@@ -12,11 +11,10 @@ trait Device {
 }
 
 class EnergyMeter(device: Device) {
-  private[this] var turnedOnAtMillis: Long = 0
+  private[this] var turnedOnAtMillis: Long       = 0
   private[this] var _wattConsumedInTotal: Double = 0
 
   private[this] def wattsConsumedInTotal_=(newValue: Double): Unit = _wattConsumedInTotal = newValue
-
 
   def startMeasuring(): Unit = {
     device.turnedOn()
@@ -25,7 +23,7 @@ class EnergyMeter(device: Device) {
 
   def stopMeasuring(): Unit = {
     device.turnedOff()
-    val durationInMillis = System.currentTimeMillis - turnedOnAtMillis
+    val durationInMillis  = System.currentTimeMillis - turnedOnAtMillis
     val durationInSeconds = durationInMillis.toDouble / 1000
 
     wattsConsumedInTotal_=(_wattConsumedInTotal + (device.wattPerSecond * durationInSeconds))
@@ -33,7 +31,4 @@ class EnergyMeter(device: Device) {
 
 }
 
-
-object InheritanceInScala {
-
-}
+object InheritanceInScala {}

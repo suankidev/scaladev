@@ -1,4 +1,6 @@
 package com.suanki.tutorials.Exercise
 
+abstract class Testing {
 
-class Testing
+  def gettingStarted(): Unit
+}

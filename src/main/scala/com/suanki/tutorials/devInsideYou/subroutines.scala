@@ -5,51 +5,38 @@ import scala.annotation.tailrec
 //com.suanki.tutorials.devInsideYou.subroutines
 object subroutines extends App {
 
-
   println("=" * 50)
 
   {
 
-
-
-
-    {//string
+    { // string
 
       val myString = "Hello world"
       println(myString.equalsIgnoreCase("tes"))
 
-
-      //val x = scala.io.StdIn.readInt()
+      // val x = scala.io.StdIn.readInt()
 //      val x = scala.io.StdIn.readLine("your favourite number:")
 //      println(x)
 
-
-      val f:Int=>Int = _+5
-      val g:Int=>Int = _+4
+      val f: Int => Int = _ + 5
+      val g: Int => Int = _ + 4
 
 //      val g:Int=>Int = x => x+5
 
       println(f(g(5)))
 
+      def rightThenLeft(left: Int => Int, right: Int => Int): Int => Int = { input =>
+        left(right(input))
+      }
 
-
-
-   def rightThenLeft(left:Int=>Int, right:Int=>Int):Int=>Int={
-     input => left(right(input))
-   }
-
-      println(rightThenLeft(f,g)(10))
-
-
+      println(rightThenLeft(f, g)(10))
 
     }
-
 
     val t: Boolean = false && {
       println("evaluated only when first is true");
       true
     }
-
 
     val u: Boolean = true && {
       println("visible");
@@ -57,7 +44,7 @@ object subroutines extends App {
     }
 
 //    println(t)
-  //  println(u)
+    //  println(u)
 
     val v = ""
 
@@ -66,33 +53,24 @@ object subroutines extends App {
     } else
       println("no tst")
 
-
-
-
-
   }
 
-
-  //premitive types
-
+  // premitive types
 
   val a: Byte = 1 // 1 Byte
 
-  val b: Short = 1 //2 byte
-  val c: Char = 'c' //2 byte
+  val b: Short = 1   // 2 byte
+  val c: Char  = 'c' // 2 byte
 
-  val d: Int = 1 // 4 bytes
-  val e: Long = 1 //8 bytes
+  val d: Int  = 1 // 4 bytes
+  val e: Long = 1 // 8 bytes
 
+  val f: Float  = 0.1f // 4 bytes
+  val g: Double = 0.1  // 8 bytes
 
-  val f: Float = 0.1f // 4 bytes
-  val g: Double = 0.1 // 8 bytes
+  val h: Boolean = true // false
 
-
-  val h: Boolean = true //false
-
-  val i: Unit = {} //()
-
+  val i: Unit = {} // ()
 
   {
 
@@ -104,8 +82,7 @@ object subroutines extends App {
     val i: (Int, Int) => Boolean = (left, right) => left == right
     val j: (Int, Int) => Boolean = _ == _
 
-    //println(y(10))
-
+    // println(y(10))
 
     //    println(9.toBinaryString)
     //    println(9.toOctalString)
@@ -123,9 +100,8 @@ object subroutines extends App {
       loop(num)
     }
 
-    //println(toBinary(9))
+    // println(toBinary(9))
   }
-
 
   def method: Unit = {
 
@@ -138,8 +114,7 @@ object subroutines extends App {
     loop(2)
   }
 
-
-  //method
+  // method
 
   {
     @tailrec
@@ -148,12 +123,9 @@ object subroutines extends App {
       else factorial(num - 1, acc = acc * num)
     }
 
+    // println(  factorial(5) )
 
-
-    //println(  factorial(5) )
-
-
-    //print count of 2
+    // print count of 2
 
     @tailrec
     def countOfTwo(num: Int, acc: Int = 1, incr: Int = 2): Unit = {
@@ -167,15 +139,14 @@ object subroutines extends App {
       }
     }
 
-    //countOfTwo(2)
+    // countOfTwo(2)
 
     def code =
       (first: Boolean, second: Boolean) => {
         println("this is subroutine")
         if (first) {
           println("this is true")
-        }
-        else {
+        } else {
           println("not sunny day")
         }
       }
@@ -185,8 +156,7 @@ object subroutines extends App {
 
       if (first) {
         println("this is true")
-      }
-      else {
+      } else {
         println("not sunny day")
       }
     }

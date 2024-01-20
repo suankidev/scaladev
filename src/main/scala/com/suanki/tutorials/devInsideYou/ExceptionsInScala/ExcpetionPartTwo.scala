@@ -12,17 +12,17 @@ object ExceptionPartTwo {
 //    println(null.isInstanceOf[Any])
 
 //    println(null equals null)
-    //Some and Option
+    // Some and Option
 
     require(1 == 1)
-    assert( 1 == 1)
+    assert(1 == 1)
     assume(1 == 1)
 
-    1 == 1 ensuring(_ == true)
+    1 == 1 ensuring (_ == true)
 
-    def fancyLogic(x:Int):Int={
-      x+9
-    } ensuring (_>0)
+    def fancyLogic(x: Int): Int = {
+      x + 9
+    } ensuring (_ > 0)
 
 //    sys.error("boom")
 //    throw new RuntimeException("boom")

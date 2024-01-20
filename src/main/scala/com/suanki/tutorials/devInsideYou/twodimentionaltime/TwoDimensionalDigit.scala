@@ -8,7 +8,6 @@ object TwoDimensionalDigit {
     bottom = "|_|"
   )
 
-
   val one = TwoDimensionalString(
     top = "   ",
     middle = "  |",
@@ -45,7 +44,6 @@ object TwoDimensionalDigit {
     bottom = "|_|"
   )
 
-
   val seven = TwoDimensionalString(
     top = " _ ",
     middle = "  |",
@@ -57,7 +55,6 @@ object TwoDimensionalDigit {
     middle = "|_|",
     bottom = "|_|"
   )
-
 
   def apply(digit: Int): TwoDimensionalString = {
     digit match {

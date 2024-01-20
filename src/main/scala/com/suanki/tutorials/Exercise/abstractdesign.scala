@@ -2,19 +2,17 @@ package com.suanki.tutorials.Exercise
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
+abstract class FileRecon {
 
-abstract class FileRecon{
-
-  def createStgTableDataFrame:DataFrame
-  def createFinalTableDataFrame:DataFrame
-  def createSourceFileDataFrame:DataFrame
-
+  def createStgTableDataFrame: DataFrame
+  def createFinalTableDataFrame: DataFrame
+  def createSourceFileDataFrame: DataFrame
 
 }
 
-object ResultGenerator{
+object ResultGenerator {
 
-   def TestRunner(stgDF: DataFrame, finalDF: DataFrame, fileDf: DataFrame): Unit = {
+  def TestRunner(stgDF: DataFrame, finalDF: DataFrame, fileDf: DataFrame): Unit = {
 
     println("Running test runner")
     fileDf.show()
@@ -25,43 +23,39 @@ object ResultGenerator{
 
 class FileTestRunner extends FileRecon {
 
-  protected var stgTableQuery:String = ""
-  protected var finalTableQuery:String = ""
-  protected var spark:SparkSession = SparkSession.builder().appName("local").config("spark.master","local[2]").getOrCreate()
-  var stgTableDF:DataFrame = spark.emptyDataFrame
-  var finalTableDF:DataFrame = spark.emptyDataFrame
-  var sourceFileDF:DataFrame = spark.emptyDataFrame
+  protected var stgTableQuery: String   = ""
+  protected var finalTableQuery: String = ""
+  protected var spark: SparkSession     = SparkSession.builder().appName("local").config("spark.master", "local[2]").getOrCreate()
+  var stgTableDF: DataFrame             = spark.emptyDataFrame
+  var finalTableDF: DataFrame           = spark.emptyDataFrame
+  var sourceFileDF: DataFrame           = spark.emptyDataFrame
 
-
-  override def createStgTableDataFrame: DataFrame = stgTableDF
+  override def createStgTableDataFrame: DataFrame   = stgTableDF
   override def createFinalTableDataFrame: DataFrame = finalTableDF
   override def createSourceFileDataFrame: DataFrame = sourceFileDF
 
-
 }
-class TableReader extends FileTestRunner{
+class TableReader extends FileTestRunner {
 
-  override def createStgTableDataFrame ={
+  override def createStgTableDataFrame = {
     stgTableDF = spark.range(10).toDF("stgdf")
     stgTableDF
   }
 
 }
 
-class FileReader extends FileTestRunner{
+class FileReader extends FileTestRunner {
 
   override def createSourceFileDataFrame: DataFrame = {
     sourceFileDF = spark.range(15).toDF("sourcefile")
     sourceFileDF
   }
 
-
 }
 
+object InitFileBasedCheck extends App {
 
-object InitFileBasedCheck extends App{
-
-  val fileReader = new FileReader
+  val fileReader  = new FileReader
   val tableReader = new TableReader
   fileReader.createSourceFileDataFrame
   fileReader.sourceFileDF.show()

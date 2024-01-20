@@ -4,7 +4,6 @@ import java.io.File
 
 object TraitAndTheirSuperPower {
 
-
   def main(args: Array[String]) = {
 
     println("=" * 50)
@@ -14,9 +13,8 @@ object TraitAndTheirSuperPower {
     trait Pet {
       def allowedToSleepInBed: Boolean
 
-      def disallowdToSleepInBed: Boolean = !allowedToSleepInBed //rich interfaces/thin interfaces functionality
+      def disallowdToSleepInBed: Boolean = !allowedToSleepInBed // rich interfaces/thin interfaces functionality
     }
-
 
     class Turtle extends Animal with Pet {
 
@@ -43,7 +41,6 @@ object TraitAndTheirSuperPower {
     }
 
     class FileWithTimeStamp(path: String) extends File(path) with Timestamp
-
 
     val path = raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt"
     val file = new FileWithTimeStamp(path)
@@ -72,7 +69,6 @@ object TraitAndTheirSuperPower {
 
     }
 
-
     object Core {
       class OrdinaryCar(override val model: String) extends Base.Car {
         override def topSpeedInKmPerHour: Int = 220
@@ -86,7 +82,6 @@ object TraitAndTheirSuperPower {
         override def topAccelerationInRpm: Int = 11000
       }
     }
-
 
     //
     object Modification {
@@ -108,9 +103,11 @@ object TraitAndTheirSuperPower {
 
     final class Lamborghini(override val model: String) extends Core.SportsCar(model) with Modification.Spoiler
 
-    final class BMW(override val model: String) extends Core.OrdinaryCar(model) with Modification.Spoiler
-      with Modification.TurboCharger with Modification.EngineControlUnit
-
+    final class BMW(override val model: String)
+        extends Core.OrdinaryCar(model)
+        with Modification.Spoiler
+        with Modification.TurboCharger
+        with Modification.EngineControlUnit
 
     println(new Lamborghini("Mercielus"))
     println(new BMW("M3-GTR"))

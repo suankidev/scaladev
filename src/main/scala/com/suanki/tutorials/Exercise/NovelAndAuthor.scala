@@ -2,12 +2,10 @@ package com.suanki.tutorials.Exercise
 
 object NovelAndAuthor extends App {
 
-  val author = new Writer("Ram Dhari Singh",
-    "Dinkar", 1956)
-  val novel = new Novel("Kala Namak", 1988, author)
+  val author = new Writer("Ram Dhari Singh", "Dinkar", 1956)
+  val novel  = new Novel("Kala Namak", 1988, author)
 
   println(novel.authorAge)
-
 
   val counter = new CounterVal
 
@@ -20,13 +18,12 @@ class CounterVal(val count: Int = 0) {
   def inc = {
     println("incrementing")
     new CounterVal(count + 1)
-  } //immutability
+  } // immutability
 
   def inc(n: Int): CounterVal = {
     if (n <= 0) {
       this
-    }
-    else inc.inc(n - 1) //immutability
+    } else inc.inc(n - 1) // immutability
   }
 
   def dec = {
@@ -43,11 +40,9 @@ class CounterVal(val count: Int = 0) {
 
 class Writer(firstName: String, surname: String, val year: Int) {
 
-
   def fullName = s"${firstName} ${surname}"
 
 }
-
 
 class Novel(name: String, year: Int, author: Writer) {
 
@@ -56,6 +51,5 @@ class Novel(name: String, year: Int, author: Writer) {
   def isWrittenBy(author: Writer) = author == this.author
 
   def copy(newYear: Int): Novel = new Novel(name, newYear, author)
-
 
 }

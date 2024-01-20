@@ -4,7 +4,6 @@ object CurryingAndClosure extends App {
 
   println("=" * 100)
 
-
   // var freeVariable:Int = 1337
   //
   def closedTerm(freeVariable: Int): Int => Int =
@@ -19,9 +18,6 @@ object CurryingAndClosure extends App {
   println(closedTerm(freeVariable = 7)(8))
   println(UncurriedclosedTermOne(freeVariable = 7, boundVariable = 8))
   println(closedTermOne(freeVariable = 7)(8))
-
-
-
 
   //      //createTableDataFrame(buildQuery,dffromQuery)
   //  //            ==> buildQuery(buildSelect,buldWhere)
@@ -49,44 +45,34 @@ object CurryingAndClosure extends App {
   //
   //  }
   //
-  //createDataFrames(tableName,spark,dfType)
-
+  // createDataFrames(tableName,spark,dfType)
 
   def code(args: Array[String]): Unit = {
-
 
     println(addToX(10)(20))
     addToy(2)(40)
     println("=" * 30)
 
+    def addToX(x: Int): Int => Int = {
+      val y: Int => Int = y => x + y
+      y
+    }
 
+    def addToy(x: Int)(y: Int): Unit = {
+      1 to x foreach (_ => println(y))
+    }
 
-  def addToX(x: Int): Int => Int = {
-    val y: Int => Int = y => x + y
-    y
+    def f(g: Int => String): Unit = {
+      // g(x)
+      println(g(45454))
+    }
+
+    def g(x: Int): String = s"${Console.MAGENTA} x ${Console.RESET}"
+
+    f(g)
+
   }
 
-  def addToy(x: Int)(y: Int): Unit = {
-    1 to x foreach (_ =>
-      println(y))
-  }
-
-
-  def f(g: Int => String): Unit = {
-    //g(x)
-    println(g(45454))
-  }
-
-  def g(x: Int): String = s"${Console.MAGENTA} x ${Console.RESET}"
-
-  f(g)
-
-
-}
-
-
-  println("="*100)
-
-
+  println("=" * 100)
 
 }
