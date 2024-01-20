@@ -12,12 +12,18 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
     AppLogger.getInfoMsg("Running narrowTransformation() function", appLogger)
 
     val df = {
-      val path1 = "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-01.csv"
-      val path2 = "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-02.csv"
-      val path3 = "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-03.csv"
-      val path4 = "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-05.csv"
-      val path5 = "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-06.csv"
-      val path6 = "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-07.csv"
+      val path1 =
+        "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-01.csv"
+      val path2 =
+        "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-02.csv"
+      val path3 =
+        "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-03.csv"
+      val path4 =
+        "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-05.csv"
+      val path5 =
+        "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-06.csv"
+      val path6 =
+        "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\src\\main\\resources\\data\\retail-data\\2010-12-07.csv"
       spark.read
         .format("csv")
         .option("header", true)
@@ -38,7 +44,10 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
       appLogger
     )
 
-    AppLogger.getInfoMsg(s"""df memory partitions:df.rdd.getNumPartitions-->${df.rdd.getNumPartitions}""", appLogger)
+    AppLogger.getInfoMsg(
+      s"""df memory partitions:df.rdd.getNumPartitions-->${df.rdd.getNumPartitions}""",
+      appLogger
+    )
     AppLogger.getInfoMsg(s"""df storage level-->${df.storageLevel}""", appLogger)
 
     //
@@ -73,9 +82,14 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
       ("Sujeet", 26, "Gaduation"),
       ("Rama", 23, "Post Graduation")
     )
-    val dfRdd = spark.sparkContext.parallelize(dfData) // .toDF("name string, age int,education string")
+    val dfRdd = spark.sparkContext.parallelize(
+      dfData
+    ) // .toDF("name string, age int,education string")
 
-    AppLogger.getInfoMsg(s"df Rdd partitions ${dfRdd.getNumPartitions}", appLogger) // by default it will be no-of cores in the system
+    AppLogger.getInfoMsg(
+      s"df Rdd partitions ${dfRdd.getNumPartitions}",
+      appLogger
+    ) // by default it will be no-of cores in the system
 
     AppLogger.getInfoMsg("End of  narrowTransformation() function ! ", appLogger)
 

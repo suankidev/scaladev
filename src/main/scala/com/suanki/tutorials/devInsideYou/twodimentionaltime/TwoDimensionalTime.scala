@@ -19,7 +19,10 @@ object TwoDimensionalTime {
     formatted(time, pattern).show()
   }
 
-  private[this] def formatted(time: LocalDateTime, pattern: String): TwoDimensionalString = {
+  private[this] def formatted(
+      time: LocalDateTime,
+      pattern: String
+  ): TwoDimensionalString = {
     var result: TwoDimensionalString = TwoDimensionalString.Empty
     oneDimensional(time, pattern) foreach { timeDigit =>
       if (timeDigit == ':')

@@ -27,7 +27,8 @@ object HOF extends App {
     def plusFive(input: Int): Int    = input + 5
     def devideByTwo(input: Int): Int = input / 2
 
-    def rendered(funName: String, argument: Int, fun: Int => Int) = s"Function ${funName} \t Argument $argument  \t Result: ${fun(argument)}"
+    def rendered(funName: String, argument: Int, fun: Int => Int) =
+      s"Function ${funName} \t Argument $argument  \t Result: ${fun(argument)}"
 
     println(rendered("plushFive", 10, plusFive))
     println(rendered("plushFive", 10, input => input + 5))

@@ -12,7 +12,8 @@ object BirthOfOOO extends App {
 
     class BankAccount(initialBalance: Int) { // default visibility of initialBalance is 'private[this] initialBalance:Int'
 
-      private[this] var _balance: Int = initialBalance // private[this] belongs to this object
+      private[this] var _balance: Int =
+        initialBalance // private[this] belongs to this object
 
       def withdraw(amount: Int): Unit = {
         // every time we calling _balance actually we are calling ==> this._balance

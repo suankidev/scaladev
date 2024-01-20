@@ -33,7 +33,8 @@ object ValuePreposition {
       private[this] var _wattConsumedInTotal: Double = 0L
       def wattsConsumedInTotal: Double               = _wattConsumedInTotal
       // private[this] def wattsConsumedInTotal(newValue:Double):Unit = _wattConsumedInTotal = newValue
-      private[this] def wattsConsumedInTotal_=(newValue: Double): Unit = _wattConsumedInTotal = newValue
+      private[this] def wattsConsumedInTotal_=(newValue: Double): Unit =
+        _wattConsumedInTotal = newValue
 
       def startMeasuring(): Unit = {
         device.turnOn()
@@ -45,7 +46,9 @@ object ValuePreposition {
         val duration          = System.currentTimeMillis() - turnedOnAtMills
         val durationInSeconds = duration.toDouble / 1000
         // _wattConsumedInTotal += ( device.wattPerSecond * durationInSeconds)
-        wattsConsumedInTotal_=(_wattConsumedInTotal + (device.wattPerSecond * durationInSeconds))
+        wattsConsumedInTotal_=(
+          _wattConsumedInTotal + (device.wattPerSecond * durationInSeconds)
+        )
       }
 
     }

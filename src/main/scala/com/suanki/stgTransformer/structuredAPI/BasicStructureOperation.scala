@@ -137,7 +137,11 @@ object BasicStructureOperation {
 
   }
 
-  def dataSources(spark: SparkSession, frame: sql.DataFrame, frame1: sql.DataFrame): Unit = {
+  def dataSources(
+      spark: SparkSession,
+      frame: sql.DataFrame,
+      frame1: sql.DataFrame
+  ): Unit = {
 
     val df = spark.read.text(raw"src/main/resources/data/sample_text.txt")
 
@@ -152,7 +156,9 @@ object BasicStructureOperation {
       .show(false)
 
     val dfRdd =
-      spark.sparkContext.textFile(raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt")
+      spark.sparkContext.textFile(
+        raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt"
+      )
 
     val flight = spark.sparkContext.textFile(
       raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\flight_data\2010-summary.csv"
@@ -171,7 +177,11 @@ object BasicStructureOperation {
 
   }
 
-  def workingWithBoolean(session: SparkSession, flightDf: sql.DataFrame, retailDf: sql.DataFrame): Unit = {
+  def workingWithBoolean(
+      session: SparkSession,
+      flightDf: sql.DataFrame,
+      retailDf: sql.DataFrame
+  ): Unit = {
 
     retailDf.printSchema()
 
@@ -200,7 +210,11 @@ object BasicStructureOperation {
 
   }
 
-  def convertingToSparkTypesLiterals(session: SparkSession, flightDF: DataFrame, retailDf: DataFrame): Unit = {
+  def convertingToSparkTypesLiterals(
+      session: SparkSession,
+      flightDF: DataFrame,
+      retailDf: DataFrame
+  ): Unit = {
 
     flightDF.select(functions.col("*"), functions.lit(1).alias("one"))
 
@@ -208,7 +222,10 @@ object BasicStructureOperation {
     flightDF.withColumn("whereCounGreateThan30", col("count") > 10)
 
     // drop
-    flightDF.drop("dest_country_name", "test") // no error even column 'test' does not exists
+    flightDF.drop(
+      "dest_country_name",
+      "test"
+    ) // no error even column 'test' does not exists
 
     // distinct and dropDuplicates
     flightDF.select("dest_country_name", "ORIGIN_COUNTRY_NAME").distinct()
@@ -239,13 +256,16 @@ object BasicStructureOperation {
     //    session.conf.set("spark.sql.shuffle.partitions",5)
     println(s"SUJEET: ===> ${flightDF.rdd.getNumPartitions}") // 1
 
-    val flightDFPartitioned = flightDF.repartition(col("dest_country_name")) // will break in 200
+    val flightDFPartitioned =
+      flightDF.repartition(col("dest_country_name")) // will break in 200
 
     println(s"SUJEET: ===> ${flightDFPartitioned.rdd.getNumPartitions}") // 200
 
     val flightDFPartitionedFive = flightDF.repartition(5, col("dest_country_name")) // 5
     println(s"SUJEET: ===> ${flightDFPartitionedFive.rdd.getNumPartitions}")
-    println(s"SUJEET: ===> ${flightDFPartitionedFive.coalesce(2).rdd.getNumPartitions}") // 2
+    println(
+      s"SUJEET: ===> ${flightDFPartitionedFive.coalesce(2).rdd.getNumPartitions}"
+    ) // 2
 
   }
 
@@ -257,7 +277,11 @@ object BasicStructureOperation {
     //    println(myRow.asInstanceOf[String])
     //    println(myRow.getLong(0))
     val myManualSchema = new StructType(
-      Array(new StructField("some", StringType, true), new StructField("col", StringType, true), new StructField("names", LongType, false))
+      Array(
+        new StructField("some", StringType, true),
+        new StructField("col", StringType, true),
+        new StructField("names", LongType, false)
+      )
     )
 
     val myRows = Seq(Row("Hello", null, 1L))
@@ -311,7 +335,8 @@ object BasicStructureOperation {
   case class Flight(dest_country_name: String, origin_country_name: String, count: BigInt)
 
   def readFightDF(utils: SparkUtils, session: SparkSession): Dataset[Flight] = {
-    val option: Map[String, String] = Map("inferSchema" -> "true", "header" -> "true", "mode" -> "permissive")
+    val option: Map[String, String] =
+      Map("inferSchema" -> "true", "header" -> "true", "mode" -> "permissive")
     import session.implicits._
     val path: String = raw"src/main/resources/data/flight_data/2015-summary.csv"
 

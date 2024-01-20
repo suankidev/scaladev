@@ -39,9 +39,11 @@ object HowTuplesAreImplemented {
     //
     //      override def canEqual(that: Any): Boolean = that.isInstanceOf[this.type] //T3 is also enough
     //    }
-    class T3(override val _1: String, override val _2: Int, override val _3: Boolean) extends P3 {
+    class T3(override val _1: String, override val _2: Int, override val _3: Boolean)
+        extends P3 {
 
-      override def canEqual(that: Any): Boolean = that.isInstanceOf[this.type] // T3 is also enough
+      override def canEqual(that: Any): Boolean =
+        that.isInstanceOf[this.type] // T3 is also enough
     }
 
     trait P3 extends Product {

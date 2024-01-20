@@ -2,7 +2,8 @@ package com.suanki.tutorials.collections
 
 object SequnecesInScala extends App {
 
-  /** maps : map , flatMap,c ollect conversions : toArray, toList, toSeq size info: isEmtpyty,size, nonEmty tests: exists, forall folds: foldLeft, foldRight,
+  /** maps : map , flatMap,c ollect conversions : toArray, toList, toSeq size info:
+    * isEmtpyty,size, nonEmty tests: exists, forall folds: foldLeft, foldRight,
     * reduceLeft, reduceRight retrieval: head, find, tail
     */
 

@@ -1,7 +1,13 @@
 package com.suanki.stgTransformer
 
 import com.suanki.sparkUtils.CommonUtils
-import org.apache.spark.sql.functions.{approx_count_distinct, col, count, countDistinct, expr}
+import org.apache.spark.sql.functions.{
+  approx_count_distinct,
+  col,
+  count,
+  countDistinct,
+  expr
+}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{SaveMode, SparkSession}
 
@@ -19,16 +25,11 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
     firstDf.show(truncate = false)
     firstDf.printSchema()
 
-    /** root
-      * \|-- Acceleration: double (nullable = true)
-      * \|-- Cylinders: long (nullable = true)
-      * \|-- Displacement: double (nullable = true)
-      * \|-- Horsepower: long (nullable = true)
-      * \|-- Miles_per_Gallon: double (nullable = true)
-      * \|-- Name: string (nullable = true)
-      * \|-- Origin: string (nullable = true)
-      * \|-- Weight_in_lbs: long (nullable = true)
-      * \|-- Year: string (nullable = true)
+    /** root \|-- Acceleration: double (nullable = true) \|-- Cylinders: long (nullable =
+      * true) \|-- Displacement: double (nullable = true) \|-- Horsepower: long (nullable
+      * \= true) \|-- Miles_per_Gallon: double (nullable = true) \|-- Name: string
+      * (nullable = true) \|-- Origin: string (nullable = true) \|-- Weight_in_lbs: long
+      * (nullable = true) \|-- Year: string (nullable = true)
       */
 
     // get rows
@@ -89,7 +90,15 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
       (6, "Brown", 2, "2010", "50", "", -1)
     )
 
-    val empColumns = Seq("emp_id", "name", "superior_emp_id", "year_joined", "emp_dept_id", "gender", "salary")
+    val empColumns = Seq(
+      "emp_id",
+      "name",
+      "superior_emp_id",
+      "year_joined",
+      "emp_dept_id",
+      "gender",
+      "salary"
+    )
 
     // schema auto inffered
     val empDF = spark.createDataFrame(emp)
@@ -98,7 +107,15 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     // create DFS with implicits
     import spark.implicits._
-    val empToDF = emp.toDF("emp_id", "name", "superior_emp_id", "year_joined", "emp_dept_id", "gender", "salary")
+    val empToDF = emp.toDF(
+      "emp_id",
+      "name",
+      "superior_emp_id",
+      "year_joined",
+      "emp_dept_id",
+      "gender",
+      "salary"
+    )
 
     empToDF.show(truncate = false)
 
@@ -111,11 +128,15 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
   def howManyJobsAndStages() = {
 
-    val path            = "C:\\Users\\sujee\\Desktop\\spark_input\\fligt_data\\"
-    val surveydf        = "C:\\Users\\sujee\\Desktop\\spark_input\\stack-overflow-developer-survey-2019\\survey_results_public.csv"
-    val flightDf2010    = spark.read.format("csv").option("header", true).load(path + "2010*.csv")
-    val flightDf2011    = spark.read.format("csv").option("header", true).load(path + "2011*.csv")
-    val flightDf2015    = spark.read.format("csv").option("header", true).load(path + "2015*.csv")
+    val path = "C:\\Users\\sujee\\Desktop\\spark_input\\fligt_data\\"
+    val surveydf =
+      "C:\\Users\\sujee\\Desktop\\spark_input\\stack-overflow-developer-survey-2019\\survey_results_public.csv"
+    val flightDf2010 =
+      spark.read.format("csv").option("header", true).load(path + "2010*.csv")
+    val flightDf2011 =
+      spark.read.format("csv").option("header", true).load(path + "2011*.csv")
+    val flightDf2015 =
+      spark.read.format("csv").option("header", true).load(path + "2015*.csv")
     val stockSurvey2019 = spark.read.format("csv").option("header", true).load(surveydf)
     val allretailer = spark.read
       .format("csv")
@@ -153,7 +174,8 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
   def dfReadMode(): Unit = {
 
     // https://medium.com/@sasidharan-r/what-are-the-lists-of-available-read-modes-in-spark-with-examples-e17455575c9b
-    /** * ->Drop the corrupted records ->Handle the corrupted records and store them a separate location ->Fail the job if we get corrupted record
+    /** * ->Drop the corrupted records ->Handle the corrupted records and store them a
+      * separate location ->Fail the job if we get corrupted record
       */
 
     /*
@@ -164,8 +186,10 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     val path = raw"src/main/resources/data/bands_readmode_tester.json"
 
-    /** {"id":1,"name":"AC/DC","hometown":"Sydney","year":1973} {"id":0,"name":"Led Zeppelin","hometown":"London","year":1968}
-      * {"id":3,"name":"Metallica","hometown":"Los Angeles","year":1981} {"id":4,"name":"The Beatles","hometown":10,20,"test","year":1960}
+    /** {"id":1,"name":"AC/DC","hometown":"Sydney","year":1973} {"id":0,"name":"Led
+      * Zeppelin","hometown":"London","year":1968}
+      * {"id":3,"name":"Metallica","hometown":"Los Angeles","year":1981}
+      * {"id":4,"name":"The Beatles","hometown":10,20,"test","year":1960}
       */
 
     // failFast
@@ -193,7 +217,13 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     val carsDF = spark.read
       .format("json")
-      .options(Map("inferSchema" -> "true", "header" -> "true", "path" -> raw"src/main/resources/data/cars.json"))
+      .options(
+        Map(
+          "inferSchema" -> "true",
+          "header"      -> "true",
+          "path"        -> raw"src/main/resources/data/cars.json"
+        )
+      )
       .load()
 
     // writing a df
@@ -255,14 +285,16 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
     val weightInKgExprssion = carsDf.col("Weight_in_lbs") / 2
     val usingexpre          = expr("Weight_in_lbs / 2").alias("weighInKg")
 
-    val powerfullCarsDF = carsDf.filter((col("origin") === "USA").and(col("horspower") >= 150))
+    val powerfullCarsDF =
+      carsDf.filter((col("origin") === "USA").and(col("horspower") >= 150))
 
   }
 
   def AggregationOnColumn = {
 
     val moviesDF = util.readDF(
-      path = raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\movies.json",
+      path =
+        raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\movies.json",
       filetype = "json",
       Map("inferSchema" -> "true", "header" -> "true"),
       isSchema = false

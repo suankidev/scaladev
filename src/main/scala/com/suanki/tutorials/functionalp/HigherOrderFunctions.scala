@@ -17,7 +17,8 @@ object HigherOrderFunctions extends App {
 
   println(ntimes(plusOne, 5, 1))
 
-  def ntimesBetter(f: Int => Int, n: Int): (Int => Int) = if (n < 0) (x: Int) => x else (x: Int) => ntimesBetter(f, n - 1)(f(x))
+  def ntimesBetter(f: Int => Int, n: Int): (Int => Int) =
+    if (n < 0) (x: Int) => x else (x: Int) => ntimesBetter(f, n - 1)(f(x))
 
   // curried functions
   val superAdder: Int => (Int => Int) = (x: Int) => (y: Int) => x + y

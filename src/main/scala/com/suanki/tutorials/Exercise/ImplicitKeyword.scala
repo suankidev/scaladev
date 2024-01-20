@@ -3,12 +3,14 @@ import scala.language.implicitConversions
 
 /** In scala implicit works as:
   *
-  * \1. Converter: Implicitly type conversion : It converts the error producing assignment into intended type String is not the sub type of Int , so error
-  * happens in line 2. To resolve the error the compiler will look for such a method in the scope which has implicit keyword and takes a String as argument and
-  * returns an Int .
+  * \1. Converter: Implicitly type conversion : It converts the error producing assignment
+  * into intended type String is not the sub type of Int , so error happens in line 2. To
+  * resolve the error the compiler will look for such a method in the scope which has
+  * implicit keyword and takes a String as argument and returns an Int .
   *
-  * 2. Parameter value injector: Implicitly receiver conversion: We generally by receiver call object's properties, eg. methods or variables . So to call any
-  * property by a receiver the property must be the member of that receiver's class/object.
+  * 2. Parameter value injector: Implicitly receiver conversion: We generally by receiver
+  * call object's properties, eg. methods or variables . So to call any property by a
+  * receiver the property must be the member of that receiver's class/object.
   *
   * 3. Extension method:
   */

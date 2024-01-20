@@ -3,8 +3,9 @@ package com.suanki.tutorials.oops
 object InheritanceAndTraits extends App {
 
   sealed class Animal {
-    val creatureType            = "wild"
-    final val classType: String = "Animal" // can't ve overwritten in extended class or in the same class
+    val creatureType = "wild"
+    final val classType: String =
+      "Animal" // can't ve overwritten in extended class or in the same class
 
     def eat                        = println("noncom")
     private def nomail(): Unit     = println("not accessible outside this class directly")

@@ -13,9 +13,12 @@ object WhatAFunctions extends App {
     override def apply(v1: Int, v2: Int): Int = v1 * v2 * 80
   }
 
-  def superAdderOne: Function1[Int, Function1[Int, Int]] = new Function[Int, Function1[Int, Int]] {
-    override def apply(x: Int): Int => Int = new Function[Int, Int] { override def apply(y: Int): Int = x + y }
-  }
+  def superAdderOne: Function1[Int, Function1[Int, Int]] =
+    new Function[Int, Function1[Int, Int]] {
+      override def apply(x: Int): Int => Int = new Function[Int, Int] {
+        override def apply(y: Int): Int = x + y
+      }
+    }
 
   def test1(x: Int)       = x + 10
   def test2: (Int) => Int = x => x * x
@@ -52,11 +55,12 @@ object WhatAFunctions extends App {
 
   println(concatinate("hello", "scala"))
 
-  def superadder: Function1[Int, Function1[Int, Int]] = new Function[Int, Function1[Int, Int]] {
-    override def apply(x: Int): Int => Int = new Function[Int, Int] {
-      override def apply(y: Int): Int = x + y
+  def superadder: Function1[Int, Function1[Int, Int]] =
+    new Function[Int, Function1[Int, Int]] {
+      override def apply(x: Int): Int => Int = new Function[Int, Int] {
+        override def apply(y: Int): Int = x + y
+      }
     }
-  }
 
   val adder3 = superadder(4)
   println(adder3(3))

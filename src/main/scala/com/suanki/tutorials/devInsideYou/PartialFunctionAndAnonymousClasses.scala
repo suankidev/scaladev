@@ -26,21 +26,27 @@ object PartialFunctionAndAnonymousClasses {
 //    }
 
     val totalFunctionWiithoutSyntaticSugar = new Function1[Int, String] {
-      override def apply(argument: Int): String = s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
+      override def apply(argument: Int): String =
+        s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
     }
 
-    val partitialFunctionWiithoutSyntaticSugar: PartialFunction[Int, String] = new PartialFunction[Int, String] {
-      override def isDefinedAt(x: Int): Boolean = if (x == 4) true else false
-      override def apply(argument: Int): String =
-        if (argument == 4) s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
-        else sys.error(s"Dude, you were supposed to call isDefined($argument) before calling apply")
-    }
+    val partitialFunctionWiithoutSyntaticSugar: PartialFunction[Int, String] =
+      new PartialFunction[Int, String] {
+        override def isDefinedAt(x: Int): Boolean = if (x == 4) true else false
+        override def apply(argument: Int): String =
+          if (argument == 4) s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
+          else
+            sys.error(
+              s"Dude, you were supposed to call isDefined($argument) before calling apply"
+            )
+      }
 
     type ~>[-Input, +Output] = PartialFunction[Int, String]
 
 //    val partialFunction: ~>[Int,String]= {
     val partialFunction: Int ~> String = {
-      case argument if (argument == 4) => s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
+      case argument if (argument == 4) =>
+        s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
     }
 
     val randomNumber = scala.util.Random.nextInt(10121)

@@ -8,7 +8,8 @@ object AbstractInScala extends App {
     * Abstract vs Trait
     *
     * both can have abstract and non-abstract
-    *   1. traits do not have constructor parameters 2. multiple traits may be inherited by the same class 3. traits = behaviour , abstract class => "thing"
+    *   1. traits do not have constructor parameters 2. multiple traits may be inherited
+    *      by the same class 3. traits = behaviour , abstract class => "thing"
     */
   abstract class Animal {
     val creatureType: String
@@ -42,8 +43,10 @@ object AbstractInScala extends App {
 
     override def eat: String = s"crunch crunch"
 
-    override def eat(animal: Animal): Unit = println(s"""I am ${creatureType} and eating ${animal.creatureType}
-         |""".stripMargin)
+    override def eat(animal: Animal): Unit = println(
+      s"""I am ${creatureType} and eating ${animal.creatureType}
+         |""".stripMargin
+    )
 
   }
 

@@ -14,7 +14,8 @@ class EnergyMeter(device: Device) {
   private[this] var turnedOnAtMillis: Long       = 0
   private[this] var _wattConsumedInTotal: Double = 0
 
-  private[this] def wattsConsumedInTotal_=(newValue: Double): Unit = _wattConsumedInTotal = newValue
+  private[this] def wattsConsumedInTotal_=(newValue: Double): Unit =
+    _wattConsumedInTotal = newValue
 
   def startMeasuring(): Unit = {
     device.turnedOn()
@@ -26,7 +27,9 @@ class EnergyMeter(device: Device) {
     val durationInMillis  = System.currentTimeMillis - turnedOnAtMillis
     val durationInSeconds = durationInMillis.toDouble / 1000
 
-    wattsConsumedInTotal_=(_wattConsumedInTotal + (device.wattPerSecond * durationInSeconds))
+    wattsConsumedInTotal_=(
+      _wattConsumedInTotal + (device.wattPerSecond * durationInSeconds)
+    )
   }
 
 }

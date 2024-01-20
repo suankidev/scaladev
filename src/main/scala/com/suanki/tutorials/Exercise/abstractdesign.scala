@@ -25,10 +25,14 @@ class FileTestRunner extends FileRecon {
 
   protected var stgTableQuery: String   = ""
   protected var finalTableQuery: String = ""
-  protected var spark: SparkSession     = SparkSession.builder().appName("local").config("spark.master", "local[2]").getOrCreate()
-  var stgTableDF: DataFrame             = spark.emptyDataFrame
-  var finalTableDF: DataFrame           = spark.emptyDataFrame
-  var sourceFileDF: DataFrame           = spark.emptyDataFrame
+  protected var spark: SparkSession = SparkSession
+    .builder()
+    .appName("local")
+    .config("spark.master", "local[2]")
+    .getOrCreate()
+  var stgTableDF: DataFrame   = spark.emptyDataFrame
+  var finalTableDF: DataFrame = spark.emptyDataFrame
+  var sourceFileDF: DataFrame = spark.emptyDataFrame
 
   override def createStgTableDataFrame: DataFrame   = stgTableDF
   override def createFinalTableDataFrame: DataFrame = finalTableDF
@@ -59,6 +63,10 @@ object InitFileBasedCheck extends App {
   val tableReader = new TableReader
   fileReader.createSourceFileDataFrame
   fileReader.sourceFileDF.show()
-  ResultGenerator.TestRunner(tableReader.stgTableDF, tableReader.finalTableDF, fileReader.sourceFileDF)
+  ResultGenerator.TestRunner(
+    tableReader.stgTableDF,
+    tableReader.finalTableDF,
+    fileReader.sourceFileDF
+  )
 
 }

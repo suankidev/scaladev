@@ -2,7 +2,8 @@ package com.suanki.tutorials
 
 /** objectpackage name is same as main package
   *
-  * universal classes and method resides in this only one package object can be created in package
+  * universal classes and method resides in this only one package object can be created in
+  * package
   *
   * *
   */

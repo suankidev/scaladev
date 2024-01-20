@@ -6,7 +6,8 @@ object MethodNotation extends App {
 
   class Person(name: String, favouriteMovie: String, val num: Int = 0) {
 
-    def +(nickname: String): Person = new Person(s"my name is $name ($nickname) i ", favouriteMovie)
+    def +(nickname: String): Person =
+      new Person(s"my name is $name ($nickname) i ", favouriteMovie)
 
     def unary_+ : Person = new Person(name, favouriteMovie, num + 1)
 

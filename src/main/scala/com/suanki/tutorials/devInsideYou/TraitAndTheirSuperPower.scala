@@ -13,7 +13,8 @@ object TraitAndTheirSuperPower {
     trait Pet {
       def allowedToSleepInBed: Boolean
 
-      def disallowdToSleepInBed: Boolean = !allowedToSleepInBed // rich interfaces/thin interfaces functionality
+      def disallowdToSleepInBed: Boolean =
+        !allowedToSleepInBed // rich interfaces/thin interfaces functionality
     }
 
     class Turtle extends Animal with Pet {
@@ -42,7 +43,8 @@ object TraitAndTheirSuperPower {
 
     class FileWithTimeStamp(path: String) extends File(path) with Timestamp
 
-    val path = raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt"
+    val path =
+      raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt"
     val file = new FileWithTimeStamp(path)
     //      println(file.creationTime)
     //      println(file.exists())
@@ -101,7 +103,9 @@ object TraitAndTheirSuperPower {
       }
     }
 
-    final class Lamborghini(override val model: String) extends Core.SportsCar(model) with Modification.Spoiler
+    final class Lamborghini(override val model: String)
+        extends Core.SportsCar(model)
+        with Modification.Spoiler
 
     final class BMW(override val model: String)
         extends Core.OrdinaryCar(model)

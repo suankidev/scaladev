@@ -15,9 +15,14 @@ final class Human(
     case _ => false
   }
 
-  override def hashCode(): Int = 41 * (41 * (41 * this.name.hashCode) + this.name.hashCode) + this.isMale.hashCode
+  override def hashCode(): Int =
+    41 * (41 * (41 * this.name.hashCode) + this.name.hashCode) + this.isMale.hashCode
 
-  def copy(name: String = this.name, age: Int = this.age, isMail: Boolean = this.isMale): Human = new Human(name, age, isMale)
+  def copy(
+      name: String = this.name,
+      age: Int = this.age,
+      isMail: Boolean = this.isMale
+  ): Human = new Human(name, age, isMale)
 
   override def productArity: Int = 3
 

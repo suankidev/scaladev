@@ -43,7 +43,8 @@ trait Readers {
 
 }
 
-class StgTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession) extends Readers {
+class StgTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession)
+    extends Readers {
 
   override val tableName: String  = utils.getTableName(param.tableName, this)
   override val tableQuery: String = buildQuery(tableName, spark)
@@ -59,7 +60,8 @@ class StgTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession) e
 
 }
 
-class FinalTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession) extends Readers {
+class FinalTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession)
+    extends Readers {
 
   override val tableName: String  = utils.getTableName(param.tableName, this)
   override val tableQuery: String = buildQuery(tableName, spark)
@@ -88,8 +90,9 @@ object ShowTime {
     val session: SparkSession = utils.getSparkSession()
     val param: JobParams      = JobParams("1", "2023-12-30", "India", "APAC")
 
-    val stgTableReader: StgTableReaders      = new StgTableReaders(param, utils, session)
-    val finalTableReaders: FinalTableReaders = new FinalTableReaders(param, utils, session)
+    val stgTableReader: StgTableReaders = new StgTableReaders(param, utils, session)
+    val finalTableReaders: FinalTableReaders =
+      new FinalTableReaders(param, utils, session)
 
     val stgDF   = TableReader(stgTableReader)
     val finalDf = TableReader(finalTableReaders)
