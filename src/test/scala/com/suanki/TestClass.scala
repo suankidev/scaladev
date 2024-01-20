@@ -1,11 +1,8 @@
 package com.suanki
 
-
-
 class TestClass extends UnitSpec {
 
-
-  def matcherOne():Unit= {
+  def matcherOne(): Unit = {
 
     it should ("match with result atest") in {
       val a = "test"
@@ -23,25 +20,19 @@ class TestClass extends UnitSpec {
     }
   }
 
-    def matcherTwo()= {
-      it should("match with result testa") in {
-        val a = "test"
-        a should equal("testa")
-      }
-
-      it should("get some df") in {
-
-        getSparkSession.range(5).head(1)(0).asInstanceOf[Int] should be (0)
-      }
+  def matcherTwo() = {
+    it should ("match with result testa") in {
+      val a = "test"
+      a should equal("testa")
     }
 
+    it should ("get some df") in {
+
+      getSparkSession.range(5).head(1)(0).asInstanceOf[Int] should be(0)
+    }
+  }
 
   matcherOne()
   matcherTwo()
 
 }
-
-
-
-
-

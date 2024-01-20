@@ -1,11 +1,10 @@
-package com.suanki
 package com.suanki.tutorials.oops
 
 object ObjectsIncScala {
 
-  //SCALA DOES NOT HAVE CLASS-LEVEL FUNCTIONALITY("STATIC")
-  object Person { //type + its only instance
-    //"static/"class" - level functionality
+  // SCALA DOES NOT HAVE CLASS-LEVEL FUNCTIONALITY("STATIC")
+  object Person { // type + its only instance
+    // "static/"class" - level functionality
     val N_EYES = 2
 
     def canFly: Boolean = false
@@ -17,8 +16,7 @@ object ObjectsIncScala {
   class Person(val name: String) {
     // instance level property
 
-  } //COMPANION
-
+  } // COMPANION
 
   def main(args: Array[String]): Unit = {
     println("+" * 50)
@@ -26,7 +24,7 @@ object ObjectsIncScala {
     println(Person.N_EYES)
     println(Person.canFly)
 
-    //Scala object = SINGLETON INSTANCE
+    // Scala object = SINGLETON INSTANCE
     val mary = new Person("mary")
     val john = new Person("John")
 
@@ -36,11 +34,10 @@ object ObjectsIncScala {
     val person2 = Person
     println(person1 == person2)
 
-
     //  val bobbie = Person.apply(mary,john)
     val bobbie = Person(mary, john)
 
-    //Scala Application =  scala object with
+    // Scala Application =  scala object with
     // def main(args: Array[String]):Unit
 
     print("+" * 50)

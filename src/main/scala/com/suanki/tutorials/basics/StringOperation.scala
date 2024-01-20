@@ -1,8 +1,6 @@
-package com.suanki
 package com.suanki.tutorials.basics
 
 object StringOperation extends App {
-
 
   val str: String = "Hello, I am learning Scala"
 
@@ -16,25 +14,22 @@ object StringOperation extends App {
   println(str.length)
 
   val aNumberString = "45"
-  val anumber = aNumberString.toInt
+  val anumber       = aNumberString.toInt
 
   println('a' +: aNumberString :+ 'z')
   println(str.reverse)
   println(str.take(2))
 
-
-
-  //Scala specifice: String interpolatores
+  // Scala specifice: String interpolatores
 
   println(s"hello my name is ${anumber}")
 
-  //f -interplators
+  // f -interplators
 
   val speed = 1.2f
-  val name = "ford"
-  val myth = f"$name can eat $speed%2.2f"
+  val name  = "ford"
+  val myth  = f"$name can eat $speed%2.2f"
 
   print(myth)
-
 
 }

@@ -213,7 +213,7 @@
         "platform": {
             "name": "jvm",
             "config": {
-                "home": "C:\\Program Files\\Java\\jdk-11.0.10",
+                "home": "C:\\Program Files\\Java\\jdk1.8.0_291\\jre",
                 "options": [
                     "-Duser.dir=C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project"
                 ]

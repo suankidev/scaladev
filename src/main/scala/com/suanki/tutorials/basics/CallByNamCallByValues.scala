@@ -1,15 +1,12 @@
-package com.suanki
 package com.suanki.tutorials.basics
 
 object CallByNamCallByValues extends App {
-
 
   def calledByValue(x: Long): Unit = {
 
     println("by value " + x)
     println("by value " + x)
   }
-
 
   // => represent by name
   def calledByName(x: => Long): Unit = {
@@ -19,7 +16,6 @@ object CallByNamCallByValues extends App {
   }
 
   calledByValue(System.nanoTime())
-  calledByName(System.nanoTime()) //evaluated each time and also delay unless it's used
-
+  calledByName(System.nanoTime()) // evaluated each time and also delay unless it's used
 
 }

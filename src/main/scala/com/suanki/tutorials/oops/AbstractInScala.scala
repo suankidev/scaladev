@@ -1,22 +1,15 @@
-package com.suanki
 package com.suanki.tutorials.oops
 
 object AbstractInScala extends App {
 
-  //abstract field and class and method
-  /**
-   * CLASS:
-   * Abstract class can't be instantiated
-   *
-   *
-   * Abstract vs Trait
-   *
-   *    both can have abstract and non-abstract
-   *    1. traits do not have constructor parameters
-   *    2. multiple traits may be inherited by the same class
-   *    3. traits = behaviour , abstract class => "thing"
-   *
-   */
+  // abstract field and class and method
+  /** CLASS: Abstract class can't be instantiated
+    *
+    * Abstract vs Trait
+    *
+    * both can have abstract and non-abstract
+    *   1. traits do not have constructor parameters 2. multiple traits may be inherited by the same class 3. traits = behaviour , abstract class => "thing"
+    */
   abstract class Animal {
     val creatureType: String
 
@@ -36,7 +29,7 @@ object AbstractInScala extends App {
   val k9 = new Dog
   k9.eat
 
-  //traits
+  // traits
   trait Carnivore {
     def eat(animal: Animal): Unit
   }
@@ -49,14 +42,12 @@ object AbstractInScala extends App {
 
     override def eat: String = s"crunch crunch"
 
-    override def eat(animal: Animal): Unit = println(
-      s"""I am ${creatureType} and eating ${animal.creatureType}
+    override def eat(animal: Animal): Unit = println(s"""I am ${creatureType} and eating ${animal.creatureType}
          |""".stripMargin)
 
   }
 
   val crocodile = new Crocodile()
   crocodile.eat(k9)
-
 
 }

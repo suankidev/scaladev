@@ -6,6 +6,8 @@ scalaVersion := "2.13.11"
 
 lazy val jacocoVersion = "0.8.11"
 
+scalafmtOnCompile := true
+
 //idePackagePrefix := Some("com.suanki")
 
 
@@ -23,7 +25,11 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % "2.0.5",
   "org.slf4j" % "slf4j-log4j12" % "2.0.5" exclude("log4j", "log4j"),
   "log4j" % "log4j" % "1.2.17",
+  "com.oracle.database.jdbc" % "ojdbc6" % "11.2.0.4"
 )
+
+
+
 
 mainClass  := Some("com.suanki.stgTransformer.structuredAPI.BasicStructureOperation")
 
