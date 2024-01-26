@@ -7,12 +7,14 @@ object ExceptionPartOne {
   def main(args: Array[String]): Unit = {
     println("=" * 50)
 
-    println("""
+    println(
+      """
         |                                     Throwable
         |                 Exception                                   Error (No need to handle then)
         |
         |
-        |""".stripMargin)
+        |""".stripMargin
+    )
 
     code(args)
     println("=" * 50)

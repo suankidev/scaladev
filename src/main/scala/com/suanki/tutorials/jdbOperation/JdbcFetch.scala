@@ -8,12 +8,12 @@ import scala.collection.mutable.ListBuffer
 class JdbcFetch {
 
   /** val productDF = spark.read.format("jdbc") .option("url",
-    * "jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL") .option("driver",
-    * "oracle.jdbc.driver.OracleDriver") .option("user", "suanki") .option("password",
-    * "TestPass#123") .option("dbtable", "product").load()
-    * ----------------------------------------- -------- ----------------------------
-    * PRODUCT_ID NOT NULL NUMBER(12) WAREHOUSE_ID NOT NULL NUMBER(12) QUANTITY NOT NULL
-    * NUMBER(8)
+    * "jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL")
+    * .option("driver", "oracle.jdbc.driver.OracleDriver") .option("user",
+    * "suanki") .option("password", "TestPass#123") .option("dbtable",
+    * "product").load() ----------------------------------------- --------
+    * ---------------------------- PRODUCT_ID NOT NULL NUMBER(12)
+    * WAREHOUSE_ID NOT NULL NUMBER(12) QUANTITY NOT NULL NUMBER(8)
     * @return
     */
 
@@ -25,9 +25,10 @@ class JdbcFetch {
 //          println(d.isClosed)
 //           d.close()
     val DB_URL = "jdbc:oracle:thin:@//localhost:1521/PDBORCL"
-    val USER   = "suanki"
-    val PASS   = "TestPass#123"
-    val QUERY  = "select PRODUCT_ID, WAREHOUSE_ID, QUANTITY from INVENTORIES"
+    val USER = "suanki"
+    val PASS = "TestPass#123"
+    val QUERY =
+      "select PRODUCT_ID, WAREHOUSE_ID, QUANTITY from INVENTORIES"
     val count_columns =
       """select count(PRODUCT_ID) as product_id, count(WAREHOUSE_ID) as WAREHOUSE_ID,
                             count(QUANTITY) as QUANTITY from INVENTORIES"""
@@ -71,5 +72,14 @@ object JdbcFetch {
     jdbcFetch.executeJdbcQuery()
 
   }
+
+  def testFile(
+      firstparameter: String,
+      firstparameter1: String,
+      firstparameter2: String,
+      firstparameter3: String,
+      thirdParameter: String
+  ): Unit =
+    "thisis test file"
 
 }

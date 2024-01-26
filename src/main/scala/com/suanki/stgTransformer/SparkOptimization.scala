@@ -57,10 +57,10 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
 
     AppLogger.getInfoMsg(
       s"""spak adaptive -->
-       |${spark.conf.get("spark.sql.adaptive.enabled")}
-       |${spark.conf.get("spark.sql.adaptive.enabled")}
-       |${spark.conf.get("spark.sql.adaptive.enabled")}
-       |""".stripMargin,
+         |${spark.conf.get("spark.sql.adaptive.enabled")}
+         |${spark.conf.get("spark.sql.adaptive.enabled")}
+         |${spark.conf.get("spark.sql.adaptive.enabled")}
+         |""".stripMargin,
       appLogger
     )
 
