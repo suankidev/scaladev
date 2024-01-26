@@ -2,7 +2,6 @@ package com.suanki.tutorials.devInsideYou
 
 import scala.annotation.tailrec
 
-//com.suanki.tutorials.devInsideYou.subroutines
 object subroutines extends App {
 
   println("=" * 50)

@@ -1,4 +1,7 @@
-package com.suanki.tutorials.Exercise
+package com.suanki.tutorials.basics
+
+import com.suanki.tutorials.Exercise.show
+
 object THREEifExpressionCanBeComplicated extends App {
 
   show()
