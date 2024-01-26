@@ -15,8 +15,9 @@ object MethodNotation extends App {
 
     def learnScala: String = learns("Scala")
 
-    def apply(n: Int): String = s"$name watch $favouriteMovie movie $n times"
-    def apply(): String       = s"$name watch $favouriteMovie "
+    def apply(n: Int): String =
+      s"$name watch $favouriteMovie movie $n times"
+    def apply(): String = s"$name watch $favouriteMovie "
 
   }
 

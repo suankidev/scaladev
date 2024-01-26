@@ -24,7 +24,9 @@ object ScalaFunction extends App {
     if (n == 1) "hello"
     else {
       println(aString)
-      aString + aRepeatedFunction(aString, n - 1) // last line should be value
+      aString + aRepeatedFunction(aString,
+                                  n - 1
+      ) // last line should be value
     }
   }
 

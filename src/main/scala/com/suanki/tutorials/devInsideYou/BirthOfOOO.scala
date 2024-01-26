@@ -43,7 +43,11 @@ object BirthOfOOO extends App {
     println(bankAccount1.balance)
     println()
 
-    def makeTransfer(from: BankAccount, amount: Int, to: BankAccount): Unit = {
+    def makeTransfer(
+        from: BankAccount,
+        amount: Int,
+        to: BankAccount
+    ): Unit = {
       from.withdraw(amount)
       println(s"FROM AFTER WITHDRAW: ${from.balance}")
       to.deposit(amount)

@@ -25,11 +25,12 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
     firstDf.show(truncate = false)
     firstDf.printSchema()
 
-    /** root \|-- Acceleration: double (nullable = true) \|-- Cylinders: long (nullable =
-      * true) \|-- Displacement: double (nullable = true) \|-- Horsepower: long (nullable
-      * \= true) \|-- Miles_per_Gallon: double (nullable = true) \|-- Name: string
-      * (nullable = true) \|-- Origin: string (nullable = true) \|-- Weight_in_lbs: long
-      * (nullable = true) \|-- Year: string (nullable = true)
+    /** root \|-- Acceleration: double (nullable = true) \|-- Cylinders:
+      * long (nullable = true) \|-- Displacement: double (nullable = true)
+      * \|-- Horsepower: long (nullable \= true) \|-- Miles_per_Gallon:
+      * double (nullable = true) \|-- Name: string (nullable = true) \|--
+      * Origin: string (nullable = true) \|-- Weight_in_lbs: long (nullable
+      * \= true) \|-- Year: string (nullable = true)
       */
 
     // get rows
@@ -119,7 +120,8 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     empToDF.show(truncate = false)
 
-    val dept = Seq(("Finance", 10), ("Marketing", 20), ("Sales", 30), ("IT", 40))
+    val dept =
+      Seq(("Finance", 10), ("Marketing", 20), ("Sales", 30), ("IT", 40))
 
     val deptColumns = Seq("dept_name", "dept_id")
     val deptDF      = dept.toDF("dept_name", "dept_id")
@@ -132,17 +134,29 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
     val surveydf =
       "C:\\Users\\sujee\\Desktop\\spark_input\\stack-overflow-developer-survey-2019\\survey_results_public.csv"
     val flightDf2010 =
-      spark.read.format("csv").option("header", true).load(path + "2010*.csv")
+      spark.read
+        .format("csv")
+        .option("header", true)
+        .load(path + "2010*.csv")
     val flightDf2011 =
-      spark.read.format("csv").option("header", true).load(path + "2011*.csv")
+      spark.read
+        .format("csv")
+        .option("header", true)
+        .load(path + "2011*.csv")
     val flightDf2015 =
-      spark.read.format("csv").option("header", true).load(path + "2015*.csv")
-    val stockSurvey2019 = spark.read.format("csv").option("header", true).load(surveydf)
+      spark.read
+        .format("csv")
+        .option("header", true)
+        .load(path + "2015*.csv")
+    val stockSurvey2019 =
+      spark.read.format("csv").option("header", true).load(surveydf)
     val allretailer = spark.read
       .format("csv")
       .option("sep", "|")
       .option("header", true)
-      .load("C:\\Users\\sujee\\Desktop\\spark_input\\retailer\\data\\inventory.dat")
+      .load(
+        "C:\\Users\\sujee\\Desktop\\spark_input\\retailer\\data\\inventory.dat"
+      )
 
     println(flightDf2010.rdd.getNumPartitions)
 
@@ -167,15 +181,18 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
       .format("csv")
       .mode(SaveMode.Overwrite)
       .option("header", true)
-      .csv("C:\\Users\\sujee\\Desktop\\spark_output\\warehouse_dir\\retail_data")
+      .csv(
+        "C:\\Users\\sujee\\Desktop\\spark_output\\warehouse_dir\\retail_data"
+      )
 
   }
 
   def dfReadMode(): Unit = {
 
     // https://medium.com/@sasidharan-r/what-are-the-lists-of-available-read-modes-in-spark-with-examples-e17455575c9b
-    /** * ->Drop the corrupted records ->Handle the corrupted records and store them a
-      * separate location ->Fail the job if we get corrupted record
+    /** * ->Drop the corrupted records ->Handle the corrupted records and
+      * store them a separate location ->Fail the job if we get corrupted
+      * record
       */
 
     /*
@@ -186,8 +203,8 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     val path = raw"src/main/resources/data/bands_readmode_tester.json"
 
-    /** {"id":1,"name":"AC/DC","hometown":"Sydney","year":1973} {"id":0,"name":"Led
-      * Zeppelin","hometown":"London","year":1968}
+    /** {"id":1,"name":"AC/DC","hometown":"Sydney","year":1973}
+      * {"id":0,"name":"Led Zeppelin","hometown":"London","year":1968}
       * {"id":3,"name":"Metallica","hometown":"Los Angeles","year":1981}
       * {"id":4,"name":"The Beatles","hometown":10,20,"test","year":1960}
       */
@@ -235,7 +252,8 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     /** opions: json flag
       *
-      * allowSinglQuotes -> true/false compression -> uncomressed //bazip2, gzip, snappy
+      * allowSinglQuotes -> true/false compression -> uncomressed //bazip2,
+      * gzip, snappy
       *
       * csv: options
       *
@@ -244,7 +262,9 @@ class BasicOfSpark(spark: SparkSession, util: CommonUtils) {
 
     val productDF = spark.read
       .format("jdbc")
-      .option("url", "jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL")
+      .option("url",
+              "jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL"
+      )
       .option("driver", "oracle.jdbc.driver.OracleDriver")
       .option("user", "suanki")
       .option("password", "testpass")

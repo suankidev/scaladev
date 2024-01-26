@@ -49,9 +49,10 @@ object WhatAFunctions extends App {
   // ALL SCALA FUNCTIONS ARE OBJECTS
 
   // A FUNCTION WHICH TAKES 2 STRINGS AND CONCATENATES THEM
-  def concatinate: (String, String) => String = new Function2[String, String, String] {
-    override def apply(v1: String, v2: String): String = s"${v1}$v2"
-  }
+  def concatinate: (String, String) => String =
+    new Function2[String, String, String] {
+      override def apply(v1: String, v2: String): String = s"${v1}$v2"
+    }
 
   println(concatinate("hello", "scala"))
 

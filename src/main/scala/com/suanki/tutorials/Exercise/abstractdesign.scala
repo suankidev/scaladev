@@ -12,7 +12,11 @@ abstract class FileRecon {
 
 object ResultGenerator {
 
-  def TestRunner(stgDF: DataFrame, finalDF: DataFrame, fileDf: DataFrame): Unit = {
+  def TestRunner(
+      stgDF: DataFrame,
+      finalDF: DataFrame,
+      fileDf: DataFrame
+  ): Unit = {
 
     println("Running test runner")
     fileDf.show()

@@ -7,8 +7,10 @@ object InheritanceAndTraits extends App {
     final val classType: String =
       "Animal" // can't ve overwritten in extended class or in the same class
 
-    def eat                        = println("noncom")
-    private def nomail(): Unit     = println("not accessible outside this class directly")
+    def eat = println("noncom")
+    private def nomail(): Unit = println(
+      "not accessible outside this class directly"
+    )
     protected def noOfLegs: String = s"no of legs is 3"
   }
 

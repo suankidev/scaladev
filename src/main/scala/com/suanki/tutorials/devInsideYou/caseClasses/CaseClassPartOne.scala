@@ -85,8 +85,16 @@ object CaseClassPartOne {
       Person("Bob", age = 32, isMale = true)
     )
 
-    println("contain=>" + personOne.contains(Person("Bob", age = 28, isMale = true)))
-    println("contain=>" + personOne.contains(Person("Bob", age = 33, isMale = true)))
+    println(
+      "contain=>" + personOne.contains(
+        Person("Bob", age = 28, isMale = true)
+      )
+    )
+    println(
+      "contain=>" + personOne.contains(
+        Person("Bob", age = 33, isMale = true)
+      )
+    )
 
     println(person.copy(name = "sujeet"))
 
@@ -126,8 +134,16 @@ object CaseClassPartOne {
       Human("Bob", age = 32, isMale = true)
     )
 
-    println("contain=>" + HumanSet.contains(Human("Bob", age = 28, isMale = true)))
-    println("contain=>" + HumanSet.contains(Human("Bob", age = 33, isMale = true)))
+    println(
+      "contain=>" + HumanSet.contains(
+        Human("Bob", age = 28, isMale = true)
+      )
+    )
+    println(
+      "contain=>" + HumanSet.contains(
+        Human("Bob", age = 33, isMale = true)
+      )
+    )
 
     println(human.copy(name = "sujeet"))
 

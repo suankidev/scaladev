@@ -20,15 +20,22 @@ class ExerciseOnDF(spark: SparkSession, util: CommonUtils) {
     )
 
     val totalProfitDf =
-      moviesDF.withColumn("total_profit", col("US_Gross") + col("Worldwide_Gross"))
+      moviesDF.withColumn("total_profit",
+                          col("US_Gross") + col("Worldwide_Gross")
+      )
 
     totalProfitDf
-      .where(col("Major_Genre").isNotNull && lower(col("Major_Genre")) === "comedy")
+      .where(
+        col("Major_Genre").isNotNull && lower(
+          col("Major_Genre")
+        ) === "comedy"
+      )
       .select("Title", "total_profit", "IMDB_Rating")
 
     // Q. Sum up all the profits of all the movies in df
 
-    val profitSum = (col("US_Gross") + col("Worldwide_Gross")).alias("total_profit")
+    val profitSum =
+      (col("US_Gross") + col("Worldwide_Gross")).alias("total_profit")
 
     // Q. count how many distinct dir
 

@@ -35,7 +35,8 @@ object TraitAndTheirSuperPower {
 
     trait Timestamp {
       val creationTime: String = {
-        val formatter = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
+        val formatter =
+          java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
 
         java.time.LocalDateTime.now.format(formatter)
       }
@@ -88,18 +89,22 @@ object TraitAndTheirSuperPower {
     //
     object Modification {
       trait Spoiler extends Base.Car {
-        abstract override def topSpeedInKmPerHour: Int = super.topSpeedInKmPerHour * 2
+        abstract override def topSpeedInKmPerHour: Int =
+          super.topSpeedInKmPerHour * 2
 
-        abstract override def topAccelerationInRpm: Int = super.topAccelerationInRpm * 2
+        abstract override def topAccelerationInRpm: Int =
+          super.topAccelerationInRpm * 2
       }
 
       trait EngineControlUnit extends Core.OrdinaryCar {
-        override def topSpeedInKmPerHour: Int = (super.topSpeedInKmPerHour * 1.5).toInt
+        override def topSpeedInKmPerHour: Int =
+          (super.topSpeedInKmPerHour * 1.5).toInt
 
       }
 
       trait TurboCharger extends Core.OrdinaryCar {
-        override def topAccelerationInRpm: Int = (super.topAccelerationInRpm * 1.5).toInt
+        override def topAccelerationInRpm: Int =
+          (super.topAccelerationInRpm * 1.5).toInt
       }
     }
 

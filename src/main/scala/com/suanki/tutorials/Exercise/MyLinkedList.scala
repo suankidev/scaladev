@@ -24,7 +24,8 @@ object EmptyList extends MyLinkedList {
 
   override def isEmpty: Boolean = true
 
-  override def add(element: Int): MyLinkedList = new TestList(element, EmptyList)
+  override def add(element: Int): MyLinkedList =
+    new TestList(element, EmptyList)
 
   override def printList: String = ""
 }
@@ -35,11 +36,13 @@ class TestList(h: Int, t: MyLinkedList) extends MyLinkedList {
 
   override def tail: MyLinkedList = t
 
-  override def add(element: Int): MyLinkedList = new TestList(element, this)
+  override def add(element: Int): MyLinkedList =
+    new TestList(element, this)
 
   override def isEmpty: Boolean = false
 
-  override def printList: String = if (t.isEmpty) s"$h" else s"$h ${t.printList}"
+  override def printList: String =
+    if (t.isEmpty) s"$h" else s"$h ${t.printList}"
 
 }
 

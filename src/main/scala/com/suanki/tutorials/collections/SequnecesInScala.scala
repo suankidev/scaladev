@@ -2,9 +2,10 @@ package com.suanki.tutorials.collections
 
 object SequnecesInScala extends App {
 
-  /** maps : map , flatMap,c ollect conversions : toArray, toList, toSeq size info:
-    * isEmtpyty,size, nonEmty tests: exists, forall folds: foldLeft, foldRight,
-    * reduceLeft, reduceRight retrieval: head, find, tail
+  /** maps : map , flatMap,c ollect conversions : toArray, toList, toSeq
+    * size info: isEmtpyty,size, nonEmty tests: exists, forall folds:
+    * foldLeft, foldRight, reduceLeft, reduceRight retrieval: head, find,
+    * tail
     */
 
   // Seq
@@ -37,8 +38,9 @@ object SequnecesInScala extends App {
   println(aList.mkString("-|-"))
 
   // arrays
-  val numbers     = Array(1, 2, 5, 8, 9, 4)
-  val treeElement = Array.ofDim[Int](3) // initialize with default value of int which is 0
+  val numbers = Array(1, 2, 5, 8, 9, 4)
+  val treeElement =
+    Array.ofDim[Int](3) // initialize with default value of int which is 0
 
   treeElement.foreach(println)
 

@@ -25,7 +25,10 @@ object subroutines extends App {
 
       println(f(g(5)))
 
-      def rightThenLeft(left: Int => Int, right: Int => Int): Int => Int = { input =>
+      def rightThenLeft(
+          left: Int => Int,
+          right: Int => Int
+      ): Int => Int = { input =>
         left(right(input))
       }
 

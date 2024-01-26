@@ -4,7 +4,11 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterAllConfigMap, ConfigMap}
 
-class TestUtils extends AnyFlatSpec with Matchers with BeforeAndAfterAllConfigMap with AbstractSuit {
+class TestUtils
+    extends AnyFlatSpec
+    with Matchers
+    with BeforeAndAfterAllConfigMap
+    with AbstractSuit {
 
   var testDate: String = ""
 

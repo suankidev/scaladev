@@ -7,8 +7,10 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 
 object BasicStructureOperation {
-  val flightPath: String = raw"src/main/resources/data/flight_data/2015-summary.csv"
-  val retailPath: String = raw"src/main/resources/data/retail-data/2010-12-01.csv"
+  val flightPath: String =
+    raw"src/main/resources/data/flight_data/2015-summary.csv"
+  val retailPath: String =
+    raw"src/main/resources/data/retail-data/2010-12-01.csv"
 
   def main(args: Array[String]): Unit = {
 
@@ -62,7 +64,8 @@ object BasicStructureOperation {
   }
 
   def readJdbc(spark: SparkSession): Unit = {
-    val url    = raw"jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL"
+    val url =
+      raw"jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL"
     val driver = raw"oracle.jdbc.driver.OracleDriver"
 
     // parallel load
@@ -79,7 +82,8 @@ object BasicStructureOperation {
       )
       .load())
 
-    val minMaxCasted = minMax.select(col("minid").cast("int"), col("maxid").cast("int"))
+    val minMaxCasted =
+      minMax.select(col("minid").cast("int"), col("maxid").cast("int"))
 
     val collectMinMax = minMaxCasted.head()
     val lowerBound    = collectMinMax.getAs[Int]("minid")
@@ -163,8 +167,9 @@ object BasicStructureOperation {
     val flight = spark.sparkContext.textFile(
       raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\flight_data\2010-summary.csv"
     )
-    val myCollection = "Spark The Definitive Guide : Big Data Processing Made Simple"
-      .split(" ")
+    val myCollection =
+      "Spark The Definitive Guide : Big Data Processing Made Simple"
+        .split(" ")
 
     //
     //    val words = spark.sparkContext.parallelize(myCollection, 2)
@@ -229,7 +234,9 @@ object BasicStructureOperation {
 
     // distinct and dropDuplicates
     flightDF.select("dest_country_name", "ORIGIN_COUNTRY_NAME").distinct()
-    flightDF.dropDuplicates(Seq("dest_country_name", "ORIGIN_COUNTRY_NAME"))
+    flightDF.dropDuplicates(
+      Seq("dest_country_name", "ORIGIN_COUNTRY_NAME")
+    )
     flightDF.dropDuplicates("dest_country_name", "ORIGIN_COUNTRY_NAME")
 
     // taking sample data
@@ -242,7 +249,7 @@ object BasicStructureOperation {
       Row("New Country 2", "Other Country 3", 1L)
     )
     val parallelizedRows = session.sparkContext.parallelize(newRows)
-    val newDF            = session.createDataFrame(parallelizedRows, schema)
+    val newDF = session.createDataFrame(parallelizedRows, schema)
     flightDF.union(newDF)
 
     // sort and orderBy
@@ -259,10 +266,15 @@ object BasicStructureOperation {
     val flightDFPartitioned =
       flightDF.repartition(col("dest_country_name")) // will break in 200
 
-    println(s"SUJEET: ===> ${flightDFPartitioned.rdd.getNumPartitions}") // 200
+    println(
+      s"SUJEET: ===> ${flightDFPartitioned.rdd.getNumPartitions}"
+    ) // 200
 
-    val flightDFPartitionedFive = flightDF.repartition(5, col("dest_country_name")) // 5
-    println(s"SUJEET: ===> ${flightDFPartitionedFive.rdd.getNumPartitions}")
+    val flightDFPartitionedFive =
+      flightDF.repartition(5, col("dest_country_name")) // 5
+    println(
+      s"SUJEET: ===> ${flightDFPartitionedFive.rdd.getNumPartitions}"
+    )
     println(
       s"SUJEET: ===> ${flightDFPartitionedFive.coalesce(2).rdd.getNumPartitions}"
     ) // 2
@@ -292,8 +304,9 @@ object BasicStructureOperation {
 
     import sparkSession.implicits._
 
-    val myDF = Seq(("Sujeet", 22, "graduation"), ("Ramesh", 23, "post-graduation"))
-      .toDF("col1", "col2", "col3")
+    val myDF =
+      Seq(("Sujeet", 22, "graduation"), ("Ramesh", 23, "post-graduation"))
+        .toDF("col1", "col2", "col3")
 
     myDF.show()
 
@@ -332,13 +345,24 @@ object BasicStructureOperation {
 
   }
 
-  case class Flight(dest_country_name: String, origin_country_name: String, count: BigInt)
+  case class Flight(
+      dest_country_name: String,
+      origin_country_name: String,
+      count: BigInt
+  )
 
-  def readFightDF(utils: SparkUtils, session: SparkSession): Dataset[Flight] = {
+  def readFightDF(
+      utils: SparkUtils,
+      session: SparkSession
+  ): Dataset[Flight] = {
     val option: Map[String, String] =
-      Map("inferSchema" -> "true", "header" -> "true", "mode" -> "permissive")
+      Map("inferSchema" -> "true",
+          "header"      -> "true",
+          "mode"        -> "permissive"
+      )
     import session.implicits._
-    val path: String = raw"src/main/resources/data/flight_data/2015-summary.csv"
+    val path: String =
+      raw"src/main/resources/data/flight_data/2015-summary.csv"
 
     val flightData2015 = session.read
       .format("csv")
@@ -352,7 +376,10 @@ object BasicStructureOperation {
     //  flightData2015.sort("count").show(20, true)
   }
 
-  def dataSetsTypeSafe(df: Dataset[Flight], sparkSession: SparkSession): Unit = {
+  def dataSetsTypeSafe(
+      df: Dataset[Flight],
+      sparkSession: SparkSession
+  ): Unit = {
 
     df.show(5, false)
 

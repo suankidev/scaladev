@@ -20,11 +20,12 @@ abstract class MyList[+A] {
 
 object Empty extends MyList[Nothing] {
   // ??? return nothing
-  override def head: Nothing                         = throw new NoSuchElementException
-  override def tail: MyList[Nothing]                 = throw new NoSuchElementException
-  override def isEmpty: Boolean                      = true
-  override def add[B >: Nothing](item: B): MyList[B] = new Cons[B](item, Empty)
-  override def printElements: String                 = ""
+  override def head: Nothing         = throw new NoSuchElementException
+  override def tail: MyList[Nothing] = throw new NoSuchElementException
+  override def isEmpty: Boolean      = true
+  override def add[B >: Nothing](item: B): MyList[B] =
+    new Cons[B](item, Empty)
+  override def printElements: String = ""
 
 }
 
@@ -48,9 +49,12 @@ object ListTest extends App {
 //  println(list.tail.head)
 //  println(list.add(4).head)
 //  println(list.toString)
-  val listOfInteger: MyList[Int] = new Cons(1, new Cons[Int](2, new Cons[Int](3, Empty)))
+  val listOfInteger: MyList[Int] =
+    new Cons(1, new Cons[Int](2, new Cons[Int](3, Empty)))
   val listOfString: MyList[String] =
-    new Cons("Scala", new Cons[String]("Java", new Cons[String]("Python", Empty)))
+    new Cons("Scala",
+             new Cons[String]("Java", new Cons[String]("Python", Empty))
+    )
 
   println(listOfInteger.toString)
   println(listOfString.toString)

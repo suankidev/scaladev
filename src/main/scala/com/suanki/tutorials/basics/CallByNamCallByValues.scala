@@ -16,6 +16,8 @@ object CallByNamCallByValues extends App {
   }
 
   calledByValue(System.nanoTime())
-  calledByName(System.nanoTime()) // evaluated each time and also delay unless it's used
+  calledByName(
+    System.nanoTime()
+  ) // evaluated each time and also delay unless it's used
 
 }

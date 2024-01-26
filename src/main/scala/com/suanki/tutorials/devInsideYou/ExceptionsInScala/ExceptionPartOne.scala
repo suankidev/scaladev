@@ -62,7 +62,12 @@ object ExceptionPartOne {
   }
 }
 
-class File(location: String, name: String, content: String, extention: String) {
+class File(
+    location: String,
+    name: String,
+    content: String,
+    extention: String
+) {
 
 //  def write(): Option[Int]= {
   def write(): Write.Result = {

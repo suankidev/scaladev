@@ -17,7 +17,8 @@ object TuplesAndMaps extends App {
 
   val phonebook = Map(("Jim", "5555"), ("sujeet", "789"))
 
-  val phonebook_or = Map("Jim" -> "5555", "sujeet" -> "789").withDefaultValue("-1")
+  val phonebook_or =
+    Map("Jim" -> "5555", "sujeet" -> "789").withDefaultValue("-1")
 
   println(phonebook_or)
 

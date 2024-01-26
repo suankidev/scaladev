@@ -26,12 +26,16 @@ trait Readers {
 
   def createDataFrame: DataFrame
 
-  def prepareWhere(partitionCols: List[String], param: JobParams): String = {
+  def prepareWhere(
+      partitionCols: List[String],
+      param: JobParams
+  ): String = {
     var where = " 1=1 "
     partitionCols.foreach(cols => {
       cols match {
-        case "date"     => where = s"$where AND date=${param.date}"
-        case "location" => where = s"$where AND location='${param.location}'"
+        case "date" => where = s"$where AND date=${param.date}"
+        case "location" =>
+          where = s"$where AND location='${param.location}'"
       }
     })
     where
@@ -43,10 +47,14 @@ trait Readers {
 
 }
 
-class StgTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession)
-    extends Readers {
+class StgTableReaders(
+    param: JobParams,
+    utils: FileUtils,
+    spark: SparkSession
+) extends Readers {
 
-  override val tableName: String  = utils.getTableName(param.tableName, this)
+  override val tableName: String =
+    utils.getTableName(param.tableName, this)
   override val tableQuery: String = buildQuery(tableName, spark)
 
   override def createDataFrame: DataFrame = {
@@ -54,16 +62,23 @@ class StgTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession)
     spark.range(5).toDF(tableName)
   }
 
-  override def buildWhere(tableName: String, spark: SparkSession): String = {
+  override def buildWhere(
+      tableName: String,
+      spark: SparkSession
+  ): String = {
     super.prepareWhere(utils.fetchPartitionCols(tableName, spark), param)
   }
 
 }
 
-class FinalTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession)
-    extends Readers {
+class FinalTableReaders(
+    param: JobParams,
+    utils: FileUtils,
+    spark: SparkSession
+) extends Readers {
 
-  override val tableName: String  = utils.getTableName(param.tableName, this)
+  override val tableName: String =
+    utils.getTableName(param.tableName, this)
   override val tableQuery: String = buildQuery(tableName, spark)
 
   override def createDataFrame: DataFrame = {
@@ -71,7 +86,10 @@ class FinalTableReaders(param: JobParams, utils: FileUtils, spark: SparkSession)
     spark.range(5).toDF(tableName)
   }
 
-  override def buildWhere(tableNam: String, spark: SparkSession): String = {
+  override def buildWhere(
+      tableNam: String,
+      spark: SparkSession
+  ): String = {
     super.prepareWhere(utils.fetchPartitionCols(tableName, spark), param)
   }
 
@@ -88,9 +106,10 @@ object ShowTime {
   def main(args: Array[String]): Unit = {
     val utils: FileUtils      = new FileUtils
     val session: SparkSession = utils.getSparkSession()
-    val param: JobParams      = JobParams("1", "2023-12-30", "India", "APAC")
+    val param: JobParams = JobParams("1", "2023-12-30", "India", "APAC")
 
-    val stgTableReader: StgTableReaders = new StgTableReaders(param, utils, session)
+    val stgTableReader: StgTableReaders =
+      new StgTableReaders(param, utils, session)
     val finalTableReaders: FinalTableReaders =
       new FinalTableReaders(param, utils, session)
 

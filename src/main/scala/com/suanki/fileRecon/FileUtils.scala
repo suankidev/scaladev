@@ -5,9 +5,16 @@ import org.apache.spark.sql.SparkSession
 class FileUtils {
 
   def getSparkSession(database: String = "default"): SparkSession =
-    SparkSession.builder().appName("test").master("local[2]").getOrCreate();
+    SparkSession
+      .builder()
+      .appName("test")
+      .master("local[2]")
+      .getOrCreate();
 
-  def fetchPartitionCols(tableName: String, spark: SparkSession): List[String] = {
+  def fetchPartitionCols(
+      tableName: String,
+      spark: SparkSession
+  ): List[String] = {
     List("location", "date")
   }
 
@@ -24,7 +31,8 @@ class FileUtils {
 //
 //}
 
-  def getTableType(tableType: String): Boolean = if (tableType == "stg") false else true
+  def getTableType(tableType: String): Boolean =
+    if (tableType == "stg") false else true
 
   def readDF(spark: SparkSession): Unit = {
 

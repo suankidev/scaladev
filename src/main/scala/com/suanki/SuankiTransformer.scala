@@ -12,9 +12,11 @@ object SuankiTransformer {
     val sparkUtil  = new SparkUtils()
     val commonUtil = new CommonUtils(sparkUtil.getSparkSession())
 
-    val exerciseOnDF = new ExerciseOnDF(sparkUtil.getSparkSession(), commonUtil)
+    val exerciseOnDF =
+      new ExerciseOnDF(sparkUtil.getSparkSession(), commonUtil)
 
-    val sparkOptimization = new SparkOptimization(sparkUtil.getSparkSession(), commonUtil)
+    val sparkOptimization =
+      new SparkOptimization(sparkUtil.getSparkSession(), commonUtil)
     sparkOptimization.narrowTransformation()
 
     // Thread.sleep(90000)

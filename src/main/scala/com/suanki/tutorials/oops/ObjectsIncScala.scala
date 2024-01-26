@@ -10,7 +10,9 @@ object ObjectsIncScala {
     def canFly: Boolean = false
 
     //    def from(mother: Person,father: Person): Person = new Person("Bobbie")
-    def apply(mother: Person, father: Person): Person = new Person("Bobbie")
+    def apply(mother: Person, father: Person): Person = new Person(
+      "Bobbie"
+    )
   }
 
   class Person(val name: String) {

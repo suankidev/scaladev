@@ -38,12 +38,13 @@ object ValuePreposition {
 
       def startMeasuring(): Unit = {
         device.turnOn()
-        turnedOnAtMills = System.currentTimeMillis // milliseconds since jan 1, 1970
+        turnedOnAtMills =
+          System.currentTimeMillis // milliseconds since jan 1, 1970
       }
 
       def stopMeasuring(): Unit = {
         device.turnOff()
-        val duration          = System.currentTimeMillis() - turnedOnAtMills
+        val duration = System.currentTimeMillis() - turnedOnAtMills
         val durationInSeconds = duration.toDouble / 1000
         // _wattConsumedInTotal += ( device.wattPerSecond * durationInSeconds)
         wattsConsumedInTotal_=(

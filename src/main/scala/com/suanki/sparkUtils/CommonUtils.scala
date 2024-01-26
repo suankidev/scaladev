@@ -6,7 +6,8 @@ import org.apache.log4j.Logger
 object AppLogger extends Serializable {
 
   def getAppLogger(loggerName: Any): org.apache.log4j.Logger = {
-    lazy val appLogger = org.apache.log4j.Logger.getLogger(loggerName.getClass)
+    lazy val appLogger =
+      org.apache.log4j.Logger.getLogger(loggerName.getClass)
     appLogger
   }
 

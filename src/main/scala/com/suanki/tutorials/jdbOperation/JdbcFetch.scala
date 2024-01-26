@@ -25,8 +25,8 @@ class JdbcFetch {
 //          println(d.isClosed)
 //           d.close()
     val DB_URL = "jdbc:oracle:thin:@//localhost:1521/PDBORCL"
-    val USER = "suanki"
-    val PASS = "TestPass#123"
+    val USER   = "suanki"
+    val PASS   = "TestPass#123"
     val QUERY =
       "select PRODUCT_ID, WAREHOUSE_ID, QUANTITY from INVENTORIES"
     val count_columns =

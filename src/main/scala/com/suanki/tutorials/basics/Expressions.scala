@@ -14,7 +14,8 @@ object Expressions extends App {
 
   val aConditiotn = true
 
-  val aCondtitiondedValue = if (aConditiotn) 5 else 3 // it gives a value it's expressoin
+  val aCondtitiondedValue =
+    if (aConditiotn) 5 else 3 // it gives a value it's expressoin
 
   println(aCondtitiondedValue)
 

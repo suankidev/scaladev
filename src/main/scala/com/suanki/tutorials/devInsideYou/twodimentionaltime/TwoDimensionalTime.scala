@@ -33,7 +33,10 @@ object TwoDimensionalTime {
     result
   }
 
-  private[this] def oneDimensional(time: LocalDateTime, pattern: String) = {
+  private[this] def oneDimensional(
+      time: LocalDateTime,
+      pattern: String
+  ) = {
     time.format(DateTimeFormatter.ofPattern(pattern))
   }
 }

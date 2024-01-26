@@ -19,7 +19,8 @@ object MethodNotation extends App {
 
     def isAlive: String = s"${name} is alive"
 
-    def apply(): String = s"Hi , my name is $name and favourite movie is $favouriteMovie"
+    def apply(): String =
+      s"Hi , my name is $name and favourite movie is $favouriteMovie"
   }
 
   val mary = new Person("Mary", "inceptino")

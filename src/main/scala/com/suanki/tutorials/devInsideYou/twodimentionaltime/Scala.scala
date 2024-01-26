@@ -11,7 +11,9 @@ object Scala {
     1 to times foreach (_ => someCode)
   }
 
-  def tickUntilEnterIsPressed(interval: FiniteDuration)(somecode: => Unit): Unit = {
+  def tickUntilEnterIsPressed(
+      interval: FiniteDuration
+  )(somecode: => Unit): Unit = {
 //    val timer:Timer = new Timer
 //    scala.io.StdIn.readLine
 //    timer.cancel()

@@ -6,7 +6,9 @@ object Recursions extends App {
 
     if (n <= 1) 1
     else {
-      println("computing factorial of " + n + "- I firrst need factorail of " + (n - 1))
+      println(
+        "computing factorial of " + n + "- I firrst need factorail of " + (n - 1)
+      )
       val result = n * aFactorial(n - 1)
       println("computed factorial of" + n + "rsult is" + result)
       result

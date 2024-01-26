@@ -3,7 +3,7 @@ package com.suanki.tutorials.functionalp
 object HigherOrderFunctions extends App {
 
   val superFunction: (Int, Int) => Int = (x: Int, y: Int) => x + y
-  val superFunctionOne                 = (x: Int, y: Int) => (z: Int) => x + y + z
+  val superFunctionOne = (x: Int, y: Int) => (z: Int) => x + y + z
 
   println(superFunction(10, 20))
   println(superFunctionOne(10, 20)(30))
