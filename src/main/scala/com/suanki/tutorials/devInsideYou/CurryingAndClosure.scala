@@ -7,7 +7,7 @@ object CurryingAndClosure extends App {
   // var freeVariable:Int = 1337
   //
   def closedTerm(freeVariable: Int): Int => Int =
-    boundVariable => freeVariable + boundVariable
+    boundVariable => freeVariable + boundVariable // anonymous function
 
   def closedTermOne(freeVariable: Int)(boundVariable: Int): Int =
     freeVariable + boundVariable

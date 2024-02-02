@@ -39,4 +39,9 @@ class TestUtils
 
     }
   }
+
+  def countTestMulti: Unit = {
+
+    it should ("match the records counts for the table")
+  }
 }

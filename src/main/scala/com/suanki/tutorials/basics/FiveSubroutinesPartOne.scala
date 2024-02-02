@@ -12,26 +12,24 @@ object FiveSubroutinesPartOne extends App {
   FarAway.code(true, false)
   FarAway.code(true, true)
 
-  println(" we can bound this to val give it to client")
+  // we can tell compiler what we want
+  val c: (Boolean, Boolean) => Unit = FarAway.code3
 
+  println(s"What we want: ${c}")
+
+  //
+  println(" we can bound this to val give it to client")
   val clientKnowThis = FarAway.code
 
   clientKnowThis(true, true)
 
-  println("we can make val  val code3")
+  println("we can make val code3")
   FarAway.code3(true, true)
 
   show()
 }
 
 object FarAway {
-
-  def a = 1337                                    // literal for a number
-  def b = true                                    // literal for boolean
-  def c = 't'
-  def d = "true"
-  def e = {}
-  def f = (first: Boolean, second: Boolean) => {} // literal for function
 
   val code3 = {
     println("I'm about to create subroutine")
@@ -49,6 +47,18 @@ object FarAway {
 
       println(result)
   }: (Boolean, Boolean) => Unit
+
+  def a = 1337 // literal for a number
+
+  def b = true // literal for boolean
+
+  def c = 't'
+
+  def d = "true"
+
+  def e = {}
+
+  def f = (first: Boolean, second: Boolean) => {} // literal for function
 
   def code2 = (isSunnyDay: Boolean, isRainyDay: Boolean) =>
     code1(isRainyDay, isSunnyDay)

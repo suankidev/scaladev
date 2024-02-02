@@ -22,6 +22,7 @@
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo.scala-sbt.org\\scalasbt\\sbt-plugin-releases\\org.jetbrains\\sbt-ide-settings\\scala_2.12\\sbt_1.0\\1.1.0\\jars\\sbt-ide-settings.jar",
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo.scala-sbt.org\\scalasbt\\sbt-plugin-releases\\com.eed3si9n\\sbt-assembly\\scala_2.12\\sbt_1.0\\0.14.6\\jars\\sbt-assembly.jar",
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalameta\\sbt-scalafmt_2.12_1.0\\2.5.2\\sbt-scalafmt_2.12_1.0-2.5.2.jar",
+            "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\io\\spray\\sbt-revolver_2.12_1.0\\0.10.0\\sbt-revolver-0.10.0.jar",
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-sbt\\main_2.12\\1.9.7\\main_2.12-1.9.7.jar",
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-sbt\\io_2.12\\1.9.7\\io_2.12-1.9.7.jar",
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\ch\\epfl\\scala\\bloop-config_2.12\\1.5.5\\bloop-config_2.12-1.5.5.jar",
@@ -174,8 +175,8 @@
                 "import _root_.sbt._",
                 "import _root_.sbt.Keys._",
                 "import _root_.sbt.nio.Keys._",
-                "import _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt.plugins.JUnitXmlReportPlugin.autoImport._, _root_.sbt.plugins.MiniDependencyTreePlugin.autoImport._, _root_.bloop.integrations.sbt.BloopPlugin.autoImport._, _root_.sbtide.ConfigPlugin.autoImport._, _root_.sbtassembly.AssemblyPlugin.autoImport._, _root_.org.scalafmt.sbt.ScalafmtPlugin.autoImport._",
-                "import _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.sbt.plugins.MiniDependencyTreePlugin, _root_.bloop.integrations.sbt.BloopPlugin, _root_.sbtide.ConfigPlugin, _root_.sbtassembly.AssemblyPlugin, _root_.org.scalafmt.sbt.ScalafmtPlugin"
+                "import _root_.sbt.ScriptedPlugin.autoImport._, _root_.sbt.plugins.JUnitXmlReportPlugin.autoImport._, _root_.sbt.plugins.MiniDependencyTreePlugin.autoImport._, _root_.bloop.integrations.sbt.BloopPlugin.autoImport._, _root_.sbtide.ConfigPlugin.autoImport._, _root_.sbtassembly.AssemblyPlugin.autoImport._, _root_.org.scalafmt.sbt.ScalafmtPlugin.autoImport._, _root_.spray.revolver.RevolverPlugin.autoImport._",
+                "import _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.ScriptedPlugin, _root_.sbt.plugins.SbtPlugin, _root_.sbt.plugins.SemanticdbPlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.sbt.plugins.MiniDependencyTreePlugin, _root_.bloop.integrations.sbt.BloopPlugin, _root_.sbtide.ConfigPlugin, _root_.sbtassembly.AssemblyPlugin, _root_.org.scalafmt.sbt.ScalafmtPlugin, _root_.spray.revolver.RevolverPlugin"
             ]
         },
         "test": {
@@ -335,6 +336,28 @@
                             "name": "sbt-scalafmt",
                             "classifier": "javadoc",
                             "path": "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalameta\\sbt-scalafmt_2.12_1.0\\2.5.2\\sbt-scalafmt_2.12_1.0-2.5.2-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.spray",
+                    "name": "sbt-revolver",
+                    "version": "0.10.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "sbt-revolver",
+                            "path": "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\io\\spray\\sbt-revolver_2.12_1.0\\0.10.0\\sbt-revolver-0.10.0.jar"
+                        },
+                        {
+                            "name": "sbt-revolver",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\io\\spray\\sbt-revolver_2.12_1.0\\0.10.0\\sbt-revolver-0.10.0-sources.jar"
+                        },
+                        {
+                            "name": "sbt-revolver",
+                            "classifier": "javadoc",
+                            "path": "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\io\\spray\\sbt-revolver_2.12_1.0\\0.10.0\\sbt-revolver-0.10.0-javadoc.jar"
                         }
                     ]
                 },

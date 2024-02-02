@@ -2,6 +2,13 @@ package com.suanki.tutorials.devInsideYou
 
 object HOF extends App {
 
+  /** hof function that accept other function as input function that
+    * produce other function as output
+    *
+    * -> every HOF can control the flow of passed function, may be you can
+    * call 2 times
+    */
+
   println("=" * 50)
 
   val d2: Int => Int = (x: Int) => x + 8
@@ -31,20 +38,70 @@ object HOF extends App {
       s"Function ${funName} \t Argument $argument  \t Result: ${fun(argument)}"
 
     println(rendered("plushFive", 10, plusFive))
-    println(rendered("plushFive", 10, input => input + 5))
-    println(rendered("devideByTwo", 10, input => input / 2))
+    println(rendered("plushFive", 10, input => input + 10))
+    println(rendered("devideByTwo", 10, input => input / 3))
+    println(rendered("devideByTwo", 10, devideByTwo))
   }
 
   code(args)
+
+  def practicalCode(args: Array[String]): Unit = {
+
+    def createStgDF(spark: String = "sparkSession"): String = {
+
+      "stgDF"
+    }
+
+    def createFinalDF(spark: String = "sparkSession"): String = {
+      "finalDF"
+    }
+
+    def dataFrameCreator(
+        dfType: String = "stg",
+        spark: String,
+        fun: String => String
+    ): String = {
+      fun(spark)
+    }
+
+    val stgDF   = dataFrameCreator("stg", "sparkSession", createStgDF)
+    val finalDf = dataFrameCreator("stg", "sparkSession", createFinalDF)
+
+    println(stgDF)
+    println(finalDf)
+  }
+
+  practicalCode(args)
 
   def loop(code: () => Unit): Unit = {
 
     1 to 10 foreach (_ => code())
   }
-  loop(() => ())
+//  loop(() => ())
   println()
-  loop(() => println("Hello"))
+//  loop(() => println("Hello"))
 
+  // here we removed () then we can remove parenthesis
+  // also passing an argument by Name
+  def loopNew(code: => Unit): Unit = {
+
+    1 to 10 foreach (_ => code)
+  }
+
+  loopNew(println("hi"))
+
+  // creating a method
+  def show1(x: Int) = println(x)
+  def code3(argument: Range, fun: Int => Unit): Unit = {
+
+    argument foreach (
+      fun
+    )
+
+  }
+
+//  code3(1 to 10, show1)
+//
   println("=" * 50)
 
 }
