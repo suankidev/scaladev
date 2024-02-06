@@ -38,8 +38,8 @@ object AnonymousFunctions extends App {
   val inc: Int => Int              = _ + 1 // equivalent to x => x +1
   val niceAdder: (Int, Int) => Int = _ + _ // equivalent to (x,y) => x + y
 
-  val superAdd    = (x: Int) => (y: Int) => x + y // currying
-  val superAddOne = (x: Int) => x * x
+  val superAdd                       = (x: Int) => (y: Int) => x + y // currying
+  val superAddOne                    = (x: Int) => x * x
   val superAddTwo: (Int, Int) => Int = (x: Int, y: Int) => x + y
   println("super add superAdd(10)(20)")
 

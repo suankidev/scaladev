@@ -9,9 +9,7 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
 
   def narrowTransformation(): Unit = {
 
-    AppLogger.getInfoMsg("Running narrowTransformation() function",
-                         appLogger
-    )
+    AppLogger.getInfoMsg("Running narrowTransformation() function", appLogger)
 
     val df = {
       val path1 =
@@ -50,9 +48,7 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
       s"""df memory partitions:df.rdd.getNumPartitions-->${df.rdd.getNumPartitions}""",
       appLogger
     )
-    AppLogger.getInfoMsg(s"""df storage level-->${df.storageLevel}""",
-                         appLogger
-    )
+    AppLogger.getInfoMsg(s"""df storage level-->${df.storageLevel}""", appLogger)
 
     //
     //    spark.conf.set("spark.default.parallelism",200)
@@ -95,9 +91,7 @@ class SparkOptimization(spark: SparkSession, utils: CommonUtils) {
       appLogger
     ) // by default it will be no-of cores in the system
 
-    AppLogger.getInfoMsg("End of  narrowTransformation() function ! ",
-                         appLogger
-    )
+    AppLogger.getInfoMsg("End of  narrowTransformation() function ! ", appLogger)
 
   }
 

@@ -56,12 +56,10 @@ object FourIntroductionToTypeSystem extends App {
   /** type system is build on only two principle
     *
     *   1. Progress
-    *      1. if an expression is well-typed (it compiles) 2. it either
-    *         evaluates or is already a value
+    *      1. if an expression is well-typed (it compiles) 2. it either evaluates or is already a value
     *
     * 2. Preservation
-    *   1. if an express is well typed and it evaluateds 2. the result has
-    *      the same type
+    *   1. if an express is well typed and it evaluateds 2. the result has the same type
     */
   show()
 }

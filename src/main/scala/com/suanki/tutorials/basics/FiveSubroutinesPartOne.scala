@@ -60,18 +60,16 @@ object FarAway {
 
   def f = (first: Boolean, second: Boolean) => {} // literal for function
 
-  def code2 = (isSunnyDay: Boolean, isRainyDay: Boolean) =>
-    code1(isRainyDay, isSunnyDay)
+  def code2 = (isSunnyDay: Boolean, isRainyDay: Boolean) => code1(isRainyDay, isSunnyDay)
 
   // second code
-  def code1: (Boolean, Boolean) => String = {
-    (isSunnyDay: Boolean, isRainyDay: Boolean) =>
-      if (isRainyDay)
-        "test"
-      else if (isSunnyDay)
-        "test fail"
-      else
-        "non matched"
+  def code1: (Boolean, Boolean) => String = { (isSunnyDay: Boolean, isRainyDay: Boolean) =>
+    if (isRainyDay)
+      "test"
+    else if (isSunnyDay)
+      "test fail"
+    else
+      "non matched"
 
   }
 

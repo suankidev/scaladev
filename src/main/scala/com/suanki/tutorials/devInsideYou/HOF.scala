@@ -2,11 +2,9 @@ package com.suanki.tutorials.devInsideYou
 
 object HOF extends App {
 
-  /** hof function that accept other function as input function that
-    * produce other function as output
+  /** hof function that accept other function as input function that produce other function as output
     *
-    * -> every HOF can control the flow of passed function, may be you can
-    * call 2 times
+    * -> every HOF can control the flow of passed function, may be you can call 2 times
     */
 
   println("=" * 50)

@@ -2,12 +2,10 @@ package com.suanki.tutorials.Exercise
 
 object ExceptionInScala {
 
-  /**   1. crash your program with OutOfMemory Error 2. crash with
-    *      stackOverflowError 3. PocketCalculator --add(x,y)
+  /**   1. crash your program with OutOfMemory Error 2. crash with stackOverflowError 3. PocketCalculator --add(x,y)
     *      --subtract(x,y) --multiply(x,y) --divide(x,y)
     *
-    * Throw --overflowWxception when add excede Int.MAX_VALUE
-    * --underlowExceptionif sub excede Int.MIN_VALUE
+    * Throw --overflowWxception when add excede Int.MAX_VALUE --underlowExceptionif sub excede Int.MIN_VALUE
     * -MAtchCaluationException or division by 0
     */
 

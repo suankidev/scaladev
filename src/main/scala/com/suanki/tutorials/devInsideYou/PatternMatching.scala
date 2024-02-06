@@ -26,24 +26,16 @@ object PatternMatching {
     lazy val one =
       1 // this can't be def, var,  required stable constant value
     def method(input: Any): Any = input match {
-      case animal @ Animal(animalType: String,
-                           isDomestic @ true,
-                           maxAge @ 20
-          ) =>
+      case animal @ Animal(animalType: String, isDomestic @ true, maxAge @ 20) =>
         s"animal is domestic $maxAge"
-      case animal @ Animal(animalType: String,
-                           isDomestic @ true,
-                           maxAge @ 30
-          ) =>
+      case animal @ Animal(animalType: String, isDomestic @ true, maxAge @ 30) =>
         s"animal is domestic $maxAge"
       case p @ Animal(a, b, c) =>
         s"""Mathced $p
            |this is toString implementation
            |${p.toString}
            |""".stripMargin
-      case (first @ ("pitbull", true, 10),
-            second @ ("pitbull", true, 11)
-          ) =>
+      case (first @ ("pitbull", true, 10), second @ ("pitbull", true, 11)) =>
         s"recieved $first $second"
       case Tuple2(first, second) => s"recieved $first $second"
       case person: Person if person.isAdult =>

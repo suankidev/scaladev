@@ -108,9 +108,7 @@ object TraitAndTheirSuperPower {
       }
     }
 
-    final class Lamborghini(override val model: String)
-        extends Core.SportsCar(model)
-        with Modification.Spoiler
+    final class Lamborghini(override val model: String) extends Core.SportsCar(model) with Modification.Spoiler
 
     final class BMW(override val model: String)
         extends Core.OrdinaryCar(model)

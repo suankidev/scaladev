@@ -2,13 +2,10 @@ package com.suanki.tutorials.basics
 
 object TWOExploringNewLearning extends App {
 
-  /** val is val stored in memory def is a definition (only the computation
-    * is stored in memory lazy val (behaves teh first time like a def and
-    * then like val var is variable (stored in memory like val, but can be
-    * changed
+  /** val is val stored in memory def is a definition (only the computation is stored in memory lazy val (behaves teh
+    * first time like a def and then like val var is variable (stored in memory like val, but can be changed
     *
-    * Statement: produce side effects expression: evaluate to
-    * something(some type)
+    * Statement: produce side effects expression: evaluate to something(some type)
     */
   println("=" * 30)
 

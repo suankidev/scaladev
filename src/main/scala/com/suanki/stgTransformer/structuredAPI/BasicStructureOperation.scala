@@ -249,7 +249,7 @@ object BasicStructureOperation {
       Row("New Country 2", "Other Country 3", 1L)
     )
     val parallelizedRows = session.sparkContext.parallelize(newRows)
-    val newDF = session.createDataFrame(parallelizedRows, schema)
+    val newDF            = session.createDataFrame(parallelizedRows, schema)
     flightDF.union(newDF)
 
     // sort and orderBy
@@ -356,10 +356,7 @@ object BasicStructureOperation {
       session: SparkSession
   ): Dataset[Flight] = {
     val option: Map[String, String] =
-      Map("inferSchema" -> "true",
-          "header"      -> "true",
-          "mode"        -> "permissive"
-      )
+      Map("inferSchema" -> "true", "header" -> "true", "mode" -> "permissive")
     import session.implicits._
     val path: String =
       raw"src/main/resources/data/flight_data/2015-summary.csv"

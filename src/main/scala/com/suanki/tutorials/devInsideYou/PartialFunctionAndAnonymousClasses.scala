@@ -15,7 +15,7 @@ object PartialFunctionAndAnonymousClasses {
     }
 
     val myVal: (Int, Int, Int) => String = (v1, v2, v3) => s"$v1 $v2 $v3"
-    val myVal1 = (x: Int, y: Int, z: Int) => s"$x $y $z"
+    val myVal1                           = (x: Int, y: Int, z: Int) => s"$x $y $z"
 
 //     val totalFunction:Int => String = x => s"${Console.MAGENTA} ${x.toString} ${Console.RESET}"
     val totalFunction /*:(Int=>String)*/ =
@@ -30,8 +30,7 @@ object PartialFunctionAndAnonymousClasses {
         s"${Console.MAGENTA} ${argument.toString} ${Console.RESET}"
     }
 
-    val partitialFunctionWiithoutSyntaticSugar
-        : PartialFunction[Int, String] =
+    val partitialFunctionWiithoutSyntaticSugar: PartialFunction[Int, String] =
       new PartialFunction[Int, String] {
         override def isDefinedAt(x: Int): Boolean =
           if (x == 4) true else false

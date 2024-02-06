@@ -8,9 +8,8 @@ object AbstractInScala extends App {
     * Abstract vs Trait
     *
     * both can have abstract and non-abstract
-    *   1. traits do not have constructor parameters 2. multiple traits may
-    *      be inherited by the same class 3. traits = behaviour , abstract
-    *      class => "thing"
+    *   1. traits do not have constructor parameters 2. multiple traits may be inherited by the same class 3. traits =
+    *      behaviour , abstract class => "thing"
     */
   abstract class Animal {
     val creatureType: String

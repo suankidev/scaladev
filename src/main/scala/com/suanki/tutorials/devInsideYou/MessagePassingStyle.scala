@@ -10,34 +10,43 @@ object MessagePassingStyle {
 
   def code(args: Array[String]): Unit = {
 
-    def makeWithdraw(initialBalance: Int): Int => Int = {
+    def bankAccount(initialBalance: Int): Symbol => (Int => Int) = {
 
       var balance: Int = initialBalance
 
-      val withdraw: Int => Int = amount =>
+      val withdraw: Int => Int = amount => {
         if (balance > amount) {
           balance = balance - amount
           balance
         } else
           sys.error("Insufficient fund")
+      }
 
-      val deposit:Int=>Int = amount =>
-        if(amount >= 1){
+      val deposit: Int => Int = amount => {
+        if (amount >= 1) {
           balance = balance + amount
           balance
-        }
-      else{
+        } else
           sys.error("It's only possible to deposit positive")
-        }
+      }
 
-      withdraw //deposit
+      def dispatch: Symbol => (Int => Int) = operation => {
+        if (operation == Symbol("withdraw"))
+          withdraw
+        else if (operation == Symbol("deposit"))
+          deposit
+        else
+          sys.error("invalid operation!")
+      }
+
+      dispatch
 
     }
 
-    val withdraw1 = makeWithdraw(initialBalance = 100)
+    val accountOne = bankAccount(initialBalance = 100)
 
-    println(withdraw1(10))
-    println(withdraw1(15))
+    println(accountOne(Symbol("deposit"))(10))
+    println(accountOne(Symbol("withdraw"))(20))
 
   }
 

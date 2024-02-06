@@ -106,7 +106,7 @@ object ShowTime {
   def main(args: Array[String]): Unit = {
     val utils: FileUtils      = new FileUtils
     val session: SparkSession = utils.getSparkSession()
-    val param: JobParams = JobParams("1", "2023-12-30", "India", "APAC")
+    val param: JobParams      = JobParams("1", "2023-12-30", "India", "APAC")
 
     val stgTableReader: StgTableReaders =
       new StgTableReaders(param, utils, session)

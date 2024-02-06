@@ -12,17 +12,14 @@ class ExerciseOnDF(spark: SparkSession, util: CommonUtils) {
     // select movie with imdb rating above 6
 
     val moviesDF = util.readDF(
-      path =
-        raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\movies.json",
+      path = raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\movies.json",
       filetype = "json",
       Map("inferSchema" -> "true", "header" -> "true"),
       isSchema = false
     )
 
     val totalProfitDf =
-      moviesDF.withColumn("total_profit",
-                          col("US_Gross") + col("Worldwide_Gross")
-      )
+      moviesDF.withColumn("total_profit", col("US_Gross") + col("Worldwide_Gross"))
 
     totalProfitDf
       .where(
@@ -53,8 +50,7 @@ class ExerciseOnDF(spark: SparkSession, util: CommonUtils) {
 
   def sparkTypeAndDatasets = {
     val moviesDF = util.readDF(
-      path =
-        raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\movies.json",
+      path = raw"C:\Users\sujee\Desktop\spark-sbt-dev\src\main\resources\data\movies.json",
       filetype = "json",
       Map("inferSchema" -> "true", "header" -> "true"),
       isSchema = false

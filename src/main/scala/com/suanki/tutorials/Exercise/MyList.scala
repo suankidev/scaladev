@@ -52,9 +52,7 @@ object ListTest extends App {
   val listOfInteger: MyList[Int] =
     new Cons(1, new Cons[Int](2, new Cons[Int](3, Empty)))
   val listOfString: MyList[String] =
-    new Cons("Scala",
-             new Cons[String]("Java", new Cons[String]("Python", Empty))
-    )
+    new Cons("Scala", new Cons[String]("Java", new Cons[String]("Python", Empty)))
 
   println(listOfInteger.toString)
   println(listOfString.toString)

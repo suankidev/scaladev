@@ -8,11 +8,9 @@ import scala.collection.mutable.ListBuffer
 class JdbcFetch {
 
   /** val productDF = spark.read.format("jdbc") .option("url",
-    * "jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL")
-    * .option("driver", "oracle.jdbc.driver.OracleDriver") .option("user",
-    * "suanki") .option("password", "TestPass#123") .option("dbtable",
-    * "product").load() ----------------------------------------- --------
-    * ---------------------------- PRODUCT_ID NOT NULL NUMBER(12)
+    * "jdbc:oracle:thin:suanki/testpass@//localhost:1521/PDBORCL") .option("driver", "oracle.jdbc.driver.OracleDriver")
+    * .option("user", "suanki") .option("password", "TestPass#123") .option("dbtable", "product").load()
+    * ----------------------------------------- -------- ---------------------------- PRODUCT_ID NOT NULL NUMBER(12)
     * WAREHOUSE_ID NOT NULL NUMBER(12) QUANTITY NOT NULL NUMBER(8)
     * @return
     */
