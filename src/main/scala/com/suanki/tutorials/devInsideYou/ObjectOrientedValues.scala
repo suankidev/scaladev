@@ -10,10 +10,12 @@ object ObjectOrientedValues {
 
   def code(args: Array[String]): Unit = {
 
-    def f(g: Int => String, h: String => String, i: String => String): Unit = {
+    type stringToString = String => String
+
+    def f(g: Int => String, h: stringToString, i: String => Char): Unit = {
       val resultOfG: String = g(1337)
       val resultOfH: String = h(resultOfG)
-      val resultOfI: String = i(resultOfH)
+      val resultOfI: Char   = i(resultOfH)
     }
 
     def g(number: Int): String = {
@@ -24,9 +26,17 @@ object ObjectOrientedValues {
       number.toString.reverse
     }
 
-    def i(string: String): String = string
+    def i(string: String): Char = {
+      if (string.nonEmpty) {
+        string(0)
+      } else
+        '?'
+    }
 
     f(g, h, i)
 
   }
+
+  /** function g h and i belongs together see inversion of control.scala
+    */
 }

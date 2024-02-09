@@ -1,6 +1,6 @@
-package com.suanki.tutorials.devInsideYou
+package com.suanki.tutorials.devInsideYou.messagePassingStyle
 
-object MessagePassingStyleOne {
+object MessagePassingStyleTwo {
 
   def main(args: Array[String]): Unit = {
     println("=" * 50)
