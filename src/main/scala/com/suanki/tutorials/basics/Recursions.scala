@@ -1,23 +1,23 @@
-package com.suanki
 package com.suanki.tutorials.basics
 
 object Recursions extends App {
-
 
   def aFactorial(n: Int): Int = {
 
     if (n <= 1) 1
     else {
-      println("computing factorial of " + n + "- I firrst need factorail of " + (n - 1))
+      println(
+        "computing factorial of " + n + "- I firrst need factorail of " + (n - 1)
+      )
       val result = n * aFactorial(n - 1)
       println("computed factorial of" + n + "rsult is" + result)
       result
     }
   }
 
-  //aFactorial(5)
+  // aFactorial(5)
 
-  //tailrec
+  // tailrec
 
   def aFactorialTail(n: Int): BigInt = {
     @scala.annotation.tailrec
@@ -26,18 +26,13 @@ object Recursions extends App {
       else loop(x - 1, x * acc)
     }
 
-    loop(n, 1) //TAILE RECIRSION= use recrsinve call as last expression
+    loop(n, 1) // TAILE RECIRSION= use recrsinve call as last expression
   }
 
-
-  /**
-   * aFactorila(5)
-   *
-   * loop(10,1)  -> acc =10 ,x =10
-   * loop(9,10*9) --> acc = 90, x =9
-   *
-   */
-
+  /** aFactorila(5)
+    *
+    * loop(10,1) -> acc =10 ,x =10 loop(9,10*9) --> acc = 90, x =9
+    */
 
   def checkIfPrime(n: Int, acc: Boolean = true, incr: Int): Boolean = {
     if (incr <= 1) acc
@@ -50,8 +45,7 @@ object Recursions extends App {
   println(checkIfPrime(18, true, 4))
   println(checkIfPrime(19, true, 4))
 
-
-  //Canctenate string
+  // Canctenate string
 
   def concatenateTailrec(name: String, n: Int): String = {
     @scala.annotation.tailrec
@@ -66,6 +60,5 @@ object Recursions extends App {
   }
 
   println(concatenateTailrec("sujeet-", 5))
-
 
 }

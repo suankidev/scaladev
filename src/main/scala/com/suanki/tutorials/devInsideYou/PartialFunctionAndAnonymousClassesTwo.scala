@@ -2,11 +2,11 @@ package com.suanki.tutorials.devInsideYou
 
 object PartialFunctionAndAnonymousClassesTwo extends App {
 
-  type ~>[-Input,+Output] = PartialFunction[Input,Output]
+  type ~>[-Input, +Output] = PartialFunction[Input, Output]
 
-  def toRomanNumeralDigit(number: Int):String={
+  def toRomanNumeralDigit(number: Int): String = {
 //    val partialFunction:Int=>String = {
-     number match {
+    number match {
       case 0 => "0: N"
       case 1 => "1: I"
       case 2 => "2: II"
@@ -21,7 +21,6 @@ object PartialFunctionAndAnonymousClassesTwo extends App {
 
 //    partialFunction(number)
   }
-
 
 //  def toRomanNumeralDigitOrElse(number: Int):String= {
 //    val partialFunction: Int ~> String = OnlyEvenDigits orElse onlyOddDigits
@@ -51,12 +50,11 @@ object PartialFunctionAndAnonymousClassesTwo extends App {
 //  0 until 10 map toRomanNumeralDigitOrElse foreach println
 //  0 until 10 collect toRomanNumeralDigit(_) foreach println
 
-  val test:PartialFunction[Int,String] = new ~>[Int,String] {
+  val test: PartialFunction[Int, String] = new ~>[Int, String] {
 
     override def apply(v1: Int): String = s"$v1 apply"
 
     override def isDefinedAt(x: Int): Boolean = x >= 5
-
 
   }
 

@@ -1,28 +1,26 @@
 package com.suanki
 
-import sparkUtils.{CommonUtils, SparkUtils,AppLogger}
+import sparkUtils.{CommonUtils, SparkUtils, AppLogger}
 import stgTransformer.{ExerciseOnDF, SparkOptimization}
-
 
 object SuankiTransformer {
 
   def main(args: Array[String]): Unit = {
     val appLogger = AppLogger.getAppLogger(this)
-    AppLogger.getInfoMsg("Starting Transformer ",appLogger)
+    AppLogger.getInfoMsg("Starting Transformer ", appLogger)
 
-    val sparkUtil = new SparkUtils()
+    val sparkUtil  = new SparkUtils()
     val commonUtil = new CommonUtils(sparkUtil.getSparkSession())
 
-    val exerciseOnDF = new ExerciseOnDF(sparkUtil.getSparkSession(),commonUtil)
+    val exerciseOnDF =
+      new ExerciseOnDF(sparkUtil.getSparkSession(), commonUtil)
 
-    val sparkOptimization = new SparkOptimization(sparkUtil.getSparkSession(),commonUtil)
+    val sparkOptimization =
+      new SparkOptimization(sparkUtil.getSparkSession(), commonUtil)
     sparkOptimization.narrowTransformation()
 
-
-    //Thread.sleep(90000)
-    AppLogger.getInfoMsg("End of the Program !",appLogger)
-
-
+    // Thread.sleep(90000)
+    AppLogger.getInfoMsg("End of the Program !", appLogger)
 
   }
 }

@@ -1,4 +1,3 @@
-package com.suanki
 package com.suanki.tutorials.basics
 
 import scala.annotation.tailrec
@@ -25,18 +24,16 @@ object ScalaFunction extends App {
     if (n == 1) "hello"
     else {
       println(aString)
-      aString + aRepeatedFunction(aString, n - 1) //last line should be value
+      aString + aRepeatedFunction(aString, n - 1) // last line should be value
     }
   }
 
   println(aRepeatedFunction("test-", 5))
 
-
-  //this produce side effects
+  // this produce side effects
   def aFuntionWithSideEffects(aString: String) = println(aString)
 
-
-  //Auxialry function  , a function inside function
+  // Auxialry function  , a function inside function
 
   def aBigFunction(n: Int): Int = {
     def aSmallerFunction(a: Int, b: Int): Int = a + b
@@ -46,15 +43,13 @@ object ScalaFunction extends App {
 
   println(aBigFunction(10))
 
-
-  //Factorial function
+  // Factorial function
   def aFactorial(n: Int): Int =
     if (n <= 0) 1
     else n * aFactorial(n - 1)
 
   println(aFactorial(5))
-  //5 * 4* 3* 2*1
-
+  // 5 * 4* 3* 2*1
 
   def aFibonacci(n: Int): Int = {
     if (n <= 2) 1
@@ -63,7 +58,6 @@ object ScalaFunction extends App {
 
   println("running fibnocci")
   println(aFibonacci(10))
-
 
   def isPrime(n: Int): Boolean = {
 
@@ -75,7 +69,7 @@ object ScalaFunction extends App {
     isPrimeUnit(n / 2)
   }
 
-  //tailrecursion
+  // tailrecursion
 
   def aFactorialTail(n: Long): Long = {
     @tailrec
@@ -90,6 +84,5 @@ object ScalaFunction extends App {
   }
 
   // println(aFactorialTail((49)))
-
 
 }

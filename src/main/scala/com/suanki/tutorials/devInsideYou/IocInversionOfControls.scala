@@ -1,6 +1,3 @@
 package com.suanki.tutorials.devInsideYou
 
-object IocInversionOfControls {
-
-}
-
+object IocInversionOfControls {}

@@ -4,7 +4,6 @@ import java.io.File
 
 object TraitAndTheirSuperPower {
 
-
   def main(args: Array[String]) = {
 
     println("=" * 50)
@@ -14,9 +13,9 @@ object TraitAndTheirSuperPower {
     trait Pet {
       def allowedToSleepInBed: Boolean
 
-      def disallowdToSleepInBed: Boolean = !allowedToSleepInBed //rich interfaces/thin interfaces functionality
+      def disallowdToSleepInBed: Boolean =
+        !allowedToSleepInBed // rich interfaces/thin interfaces functionality
     }
-
 
     class Turtle extends Animal with Pet {
 
@@ -36,7 +35,8 @@ object TraitAndTheirSuperPower {
 
     trait Timestamp {
       val creationTime: String = {
-        val formatter = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
+        val formatter =
+          java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
 
         java.time.LocalDateTime.now.format(formatter)
       }
@@ -44,8 +44,8 @@ object TraitAndTheirSuperPower {
 
     class FileWithTimeStamp(path: String) extends File(path) with Timestamp
 
-
-    val path = raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt"
+    val path =
+      raw"C:\Users\sujee\OneDrive\Documents\bigdata_and_hadoop\scala\spark-sbt-dev\src\main\resources\data\sample_text.txt"
     val file = new FileWithTimeStamp(path)
     //      println(file.creationTime)
     //      println(file.exists())
@@ -72,7 +72,6 @@ object TraitAndTheirSuperPower {
 
     }
 
-
     object Core {
       class OrdinaryCar(override val model: String) extends Base.Car {
         override def topSpeedInKmPerHour: Int = 220
@@ -87,30 +86,35 @@ object TraitAndTheirSuperPower {
       }
     }
 
-
     //
     object Modification {
       trait Spoiler extends Base.Car {
-        abstract override def topSpeedInKmPerHour: Int = super.topSpeedInKmPerHour * 2
+        abstract override def topSpeedInKmPerHour: Int =
+          super.topSpeedInKmPerHour * 2
 
-        abstract override def topAccelerationInRpm: Int = super.topAccelerationInRpm * 2
+        abstract override def topAccelerationInRpm: Int =
+          super.topAccelerationInRpm * 2
       }
 
       trait EngineControlUnit extends Core.OrdinaryCar {
-        override def topSpeedInKmPerHour: Int = (super.topSpeedInKmPerHour * 1.5).toInt
+        override def topSpeedInKmPerHour: Int =
+          (super.topSpeedInKmPerHour * 1.5).toInt
 
       }
 
       trait TurboCharger extends Core.OrdinaryCar {
-        override def topAccelerationInRpm: Int = (super.topAccelerationInRpm * 1.5).toInt
+        override def topAccelerationInRpm: Int =
+          (super.topAccelerationInRpm * 1.5).toInt
       }
     }
 
     final class Lamborghini(override val model: String) extends Core.SportsCar(model) with Modification.Spoiler
 
-    final class BMW(override val model: String) extends Core.OrdinaryCar(model) with Modification.Spoiler
-      with Modification.TurboCharger with Modification.EngineControlUnit
-
+    final class BMW(override val model: String)
+        extends Core.OrdinaryCar(model)
+        with Modification.Spoiler
+        with Modification.TurboCharger
+        with Modification.EngineControlUnit
 
     println(new Lamborghini("Mercielus"))
     println(new BMW("M3-GTR"))

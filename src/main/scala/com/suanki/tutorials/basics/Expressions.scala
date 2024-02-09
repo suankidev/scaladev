@@ -1,22 +1,21 @@
-package com.suanki
 package com.suanki.tutorials.basics
 
 object Expressions extends App {
 
-
-  val x = 1 + 2 //EXPRESSION
+  val x = 1 + 2 // EXPRESSION
 
   println(x)
   println(2 + 3 * 4)
 
-  //Instrunction:  (DO)
-  //Expression:(TYPE) that has a value or and type
+  // Instrunction:  (DO)
+  // Expression:(TYPE) that has a value or and type
 
-  //if expression
+  // if expression
 
   val aConditiotn = true
 
-  val aCondtitiondedValue = if (aConditiotn) 5 else 3 //it gives a value it's expressoin
+  val aCondtitiondedValue =
+    if (aConditiotn) 5 else 3 // it gives a value it's expressoin
 
   println(aCondtitiondedValue)
 
@@ -30,9 +29,9 @@ object Expressions extends App {
     i += 1
   }
 
-  //don't use while b/c sideeffect  while returns unit
+  // don't use while b/c sideeffect  while returns unit
 
-  //side effects: println, whiles, reassigning
+  // side effects: println, whiles, reassigning
 
   val aWieredValue = while (i < 10) {
 
@@ -42,19 +41,15 @@ object Expressions extends App {
 
   println((aWieredValue))
 
-
-
-  //Code Blocks
+  // Code Blocks
 
   val aCodeBlock = {
     val y = 2
     val z = y + 1
 
     if (z > 2) "hello" else "GoodBuy"
-  } //valu of whole block is last expression
-
+  } // valu of whole block is last expression
 
   println(aCodeBlock)
-
 
 }

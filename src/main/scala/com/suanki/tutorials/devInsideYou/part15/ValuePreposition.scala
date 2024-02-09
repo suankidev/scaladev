@@ -3,25 +3,23 @@ package com.suanki.tutorials.devInsideYou.part15
 
 object ValuePreposition {
 
-
-  def main(args:Array[String]):Unit= {
+  def main(args: Array[String]): Unit = {
 
     code(args)
   }
 
+  def code(args: Array[String]): Unit = {
 
-  def code(args:Array[String]):Unit={
-
-    //rarely used
-    type Structure ={
-      def wattPerSecond:Int
+    // rarely used
+    type Structure = {
+      def wattPerSecond: Int
       def turnOn(): Unit
-      def turnOff():Unit
+      def turnOff(): Unit
     }
-    trait  Device{
-      def wattPerSecond:Int
+    trait Device {
+      def wattPerSecond: Int
       def turnOn(): Unit
-      def turnOff():Unit
+      def turnOff(): Unit
     }
 
     trait Entertains
@@ -29,25 +27,28 @@ object ValuePreposition {
 //                           turnDeviceOff: () => Unit)
 
 //  class EnergyMeter(device:Structure){
-    class EnergyMeter(device:Device){
+    class EnergyMeter(device: Device) {
 
-      private[this] var turnedOnAtMills:Long = 0L
-      private[this] var _wattConsumedInTotal:Double = 0L
-      def wattsConsumedInTotal:Double = _wattConsumedInTotal
-     //private[this] def wattsConsumedInTotal(newValue:Double):Unit = _wattConsumedInTotal = newValue
-      private[this] def wattsConsumedInTotal_=(newValue:Double):Unit = _wattConsumedInTotal = newValue
+      private[this] var turnedOnAtMills: Long        = 0L
+      private[this] var _wattConsumedInTotal: Double = 0L
+      def wattsConsumedInTotal: Double               = _wattConsumedInTotal
+      // private[this] def wattsConsumedInTotal(newValue:Double):Unit = _wattConsumedInTotal = newValue
+      private[this] def wattsConsumedInTotal_=(newValue: Double): Unit =
+        _wattConsumedInTotal = newValue
 
-      def startMeasuring():Unit = {
+      def startMeasuring(): Unit = {
         device.turnOn()
-        turnedOnAtMills = System.currentTimeMillis  //milliseconds since jan 1, 1970
+        turnedOnAtMills = System.currentTimeMillis // milliseconds since jan 1, 1970
       }
 
-      def stopMeasuring():Unit= {
+      def stopMeasuring(): Unit = {
         device.turnOff()
-        val duration = System.currentTimeMillis() - turnedOnAtMills
+        val duration          = System.currentTimeMillis() - turnedOnAtMills
         val durationInSeconds = duration.toDouble / 1000
-        //_wattConsumedInTotal += ( device.wattPerSecond * durationInSeconds)
-        wattsConsumedInTotal_=(_wattConsumedInTotal + ( device.wattPerSecond * durationInSeconds))
+        // _wattConsumedInTotal += ( device.wattPerSecond * durationInSeconds)
+        wattsConsumedInTotal_=(
+          _wattConsumedInTotal + (device.wattPerSecond * durationInSeconds)
+        )
       }
 
     }
@@ -84,42 +85,40 @@ object ValuePreposition {
 //           this.turnOn,
 //           this.turnOff
 //         )
-          val wattPerSecond:Int = 500
+      val wattPerSecond: Int = 500
 
-          def turnOn(): Unit = {
-            println("tv on")
-          }
+      def turnOn(): Unit = {
+        println("tv on")
+      }
 
-          def turnOff(): Unit = {
-            println("tv off")
-          }
-
+      def turnOff(): Unit = {
+        println("tv off")
+      }
 
     }
 
-    class LightBulb extends Device{
+    class LightBulb extends Device {
 //      def toDevice:Device =  Device(
 //        this.wattPerSecond,
 //        this.turnOn,
 //        this.turnOff
 //      )
-          val wattPerSecond: Int = 100
+      val wattPerSecond: Int = 100
 
-          def turnOn(): Unit = {
-            println("light bulb on")
-          }
+      def turnOn(): Unit = {
+        println("light bulb on")
+      }
 
-          def turnOff(): Unit = {
-            println("light bulb  off")
-          }
+      def turnOff(): Unit = {
+        println("light bulb  off")
+      }
 
     }
 
+    val lightBulb: Device = new LightBulb
+    val tv: Device        = new TV
 
-    val lightBulb:Device = new LightBulb
-    val tv:Device = new TV
-
-    val energyMeter=new EnergyMeter(lightBulb)
+    val energyMeter = new EnergyMeter(lightBulb)
 
 //    val energyMeter=EnergyMeter(lightBulb)
 
