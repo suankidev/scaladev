@@ -1,6 +1,6 @@
 package com.suanki.tutorials.devInsideYou.InversionOfControls
 
-//abstract class AnyDevice {
+//abstract class ElectricalDevice {
 //
 //  def wattsPerSecond: Int = {
 //    sys.error("pass some value")
@@ -14,7 +14,7 @@ package com.suanki.tutorials.devInsideYou.InversionOfControls
 //  }
 //
 //}
-trait AnyDevice {
+trait ElectricalDevice {
   def wattsPerSecond: Int
   def turnOn: Unit
   def turnOff: Unit
@@ -24,7 +24,7 @@ trait AnyDevice {
 trait Entertainment
 trait Expensive
 
-class ComplexEnergyMeterFive(device: AnyDevice) {
+class ComplexEnergyMeterFive(device: ElectricalDevice) {
 
   private[this] var turnedOnAtMillis: Long = 0
 
@@ -50,7 +50,7 @@ class ComplexEnergyMeterFive(device: AnyDevice) {
 
 }
 
-class TVFive extends AnyDevice with Entertainment {
+class TVFive extends ElectricalDevice with Entertainment {
 
   override def wattsPerSecond: Int = 500
 
@@ -64,7 +64,7 @@ class TVFive extends AnyDevice with Entertainment {
 
 }
 
-class LightBulbFive extends AnyDevice {
+class LightBulbFive extends ElectricalDevice {
   // light bulb
   override def wattsPerSecond: Int = 100
 
@@ -80,10 +80,9 @@ class LightBulbFive extends AnyDevice {
 object InversionOfControlsFive extends App {
   println("=" * 50)
 
-  val lightBulb: AnyDevice = new LightBulbFive
-  val tv: AnyDevice        = new TVFive()
-
-  val lightMeter = new ComplexEnergyMeterFive(lightBulb)
+  val lightBulb: ElectricalDevice = new LightBulbFive
+  val tv: ElectricalDevice        = new TVFive
+  val lightMeter                  = new ComplexEnergyMeterFive(lightBulb)
 
   lightMeter.startMeasuring()
   Thread.sleep(1000)
