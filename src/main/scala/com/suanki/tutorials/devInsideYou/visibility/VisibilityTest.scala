@@ -18,7 +18,7 @@ object VisibilityTest {
     val b = new B
 //    a.foo()
     a.callingFoo
-    b.foo1()
+//    b.foo1()
   }
 
 }
