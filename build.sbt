@@ -34,6 +34,7 @@ scalacOptions ++= Seq(
   "-unchecked",
   "-deprecation",
   "-feature"
+//  "-Xlint"  /*   enable this in production application */
 )
 
 //  "-feature ".

@@ -1,6 +1,6 @@
-package com.suanki.tutorials.devInsideYou
+package com.suanki.tutorials.devInsideYou.anonymousPartialFunction
 
-object PartialFunctionAndAnonymousClasses {
+object Exercises {
 
   def main(args: Array[String]) = {
 
@@ -43,6 +43,7 @@ object PartialFunctionAndAnonymousClasses {
             )
       }
 
+    // type alias for partial function
     type ~>[-Input, +Output] = PartialFunction[Int, String]
 
 //    val partialFunction: ~>[Int,String]= {

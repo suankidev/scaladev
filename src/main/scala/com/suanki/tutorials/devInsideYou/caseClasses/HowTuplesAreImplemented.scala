@@ -1,7 +1,6 @@
 package com.suanki.tutorials.devInsideYou.caseClasses
 
 object HowTuplesAreImplemented {
-  println("=" * 50)
 
   // Tuples are
   /*
@@ -15,8 +14,9 @@ object HowTuplesAreImplemented {
   def code(args: Array[String]) = {
 
     //
-    //    val tuple = Tuple3("a", 1, 'c')
-    //    val tupleOne: Tuple3[String, Int, Char] = new Tuple3("a", 1, 'c')
+    val tupleOfDifferentTypePart                        = Tuple3("a", 1, 'c')
+    val tupleOfDifferentType: Tuple3[String, Int, Char] = new Tuple3("a", 1, 'c')
+    // tuples are case class , we don't need to use new keyword
     val tupleTwo = ("favouriteNumber", 1337, true)
 
     tupleTwo match {
@@ -33,12 +33,19 @@ object HowTuplesAreImplemented {
     // trait Product3[+T1,+T2,+T3] extends  Product
     // final case class Tuple3[+T1,+T2,+T3]  extends Product3[+T1,+T2,+T3]
 
-    //    class T3(override val _1: String,
-    //    override val _2: Int,
-    //    override val _3: Boolean) extends Product3[String, Int, Boolean] {
-    //
-    //      override def canEqual(that: Any): Boolean = that.isInstanceOf[this.type] //T3 is also enough
-    //    }
+    case class TupleOfThree(override val _1: String, override val _2: Int, override val _3: Boolean)
+        extends Product3[String, Int, Boolean] {
+
+      override def canEqual(that: Any): Boolean = that.isInstanceOf[this.type] // T3 is also enough
+    }
+
+    println()
+    println(TupleOfThree("a", 1, false)._1)
+    println()
+
+    println("it can be implemented as below ===>")
+    println()
+
     class T3(
         override val _1: String,
         override val _2: Int,
@@ -51,11 +58,11 @@ object HowTuplesAreImplemented {
 
     trait P3 extends Product {
       // Members declared in scala.Equals
-      def canEqual(that: Any): Boolean = that.isInstanceOf[this.type]
+      override def canEqual(that: Any): Boolean = that.isInstanceOf[this.type]
 
       // Members declared in scala.Product
-      def productArity: Int = 3
-      def productElement(n: Int): Any = n match {
+      override def productArity: Int = 3
+      override def productElement(n: Int): Any = n match {
         case 0 => _1
         case 1 => _2
         case 2 => _3
@@ -83,8 +90,4 @@ object HowTuplesAreImplemented {
 
   }
 
-  //  code(args)
-  //  createYourOwnTuple(args)
-
-  println("=" * 50)
 }
