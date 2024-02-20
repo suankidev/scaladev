@@ -1,4 +1,4 @@
-name := "spark-sbt-dev"
+name := "devInsideYou"
 
 version := "0.1"
 

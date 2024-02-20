@@ -11,6 +11,13 @@ object Main extends App {
 
   // suppose case class doesn't exist, we can create our own
   // goal is to run pattern match on humnan
-  ConvertClassAsOfCaseClass.code(args)
+  // ConvertClassAsOfCaseClass.code(args)
+
+  // File example with appy and unapply and pattern match
+//  Unapply.code
+
+  // how case class, function and tupple are interrelated
+  RelationOfAll.code
+
   println("=" * 50)
 }
