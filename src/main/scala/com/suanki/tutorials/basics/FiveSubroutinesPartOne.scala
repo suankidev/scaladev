@@ -34,7 +34,6 @@ object FarAway {
   val code3 = {
     println("I'm about to create subroutine")
     (isSunnyDay: Boolean, isRainyDay: Boolean) =>
-
       def result = {
         if (isSunnyDay)
           "I'm Happy"
@@ -77,7 +76,6 @@ object FarAway {
   def code = {
     println("I'm about to create subroutine")
     (isSunnyDay: Boolean, isRainyDay: Boolean) =>
-
       def result = {
         if (isSunnyDay)
           "I'm Happy"

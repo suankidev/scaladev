@@ -1,16 +1,16 @@
 {
     "version": "1.4.0",
     "project": {
-        "name": "spark-sbt-dev-build-build",
-        "directory": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project",
-        "workspaceDir": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project",
+        "name": "devinsideyou-build-build",
+        "directory": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project",
+        "workspaceDir": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project",
         "sources": [
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\src\\main\\scala",
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\src\\main\\scala-2.12",
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\src\\main\\scala-2",
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\src\\main\\java",
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\src\\main\\scala-sbt-1.0",
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\src\\main\\scala",
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\src\\main\\scala-2.12",
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\src\\main\\scala-2",
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\src\\main\\java",
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\src\\main\\scala-sbt-1.0",
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
         ],
         "dependencies": [
             
@@ -103,11 +103,11 @@
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\reactivestreams\\reactive-streams\\1.0.3\\reactive-streams-1.0.3.jar",
             "C:\\Users\\sujee\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\com\\typesafe\\config\\1.4.2\\config-1.4.2.jar"
         ],
-        "out": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\.bloop\\spark-sbt-dev-build-build",
-        "classesDir": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\.bloop\\spark-sbt-dev-build-build\\scala-2.12\\sbt-1.0\\classes",
+        "out": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\.bloop\\devinsideyou-build-build",
+        "classesDir": "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\.bloop\\devinsideyou-build-build\\scala-2.12\\sbt-1.0\\classes",
         "resources": [
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\src\\main\\resources",
-            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\src\\main\\resources",
+            "C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
         ],
         "scala": {
             "organization": "org.scala-lang",
@@ -215,7 +215,7 @@
             "config": {
                 "home": "C:\\Program Files\\Java\\jdk1.8.0_291\\jre",
                 "options": [
-                    "-Duser.dir=C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\scala\\spark-sbt-dev\\project\\project"
+                    "-Duser.dir=C:\\Users\\sujee\\OneDrive\\Documents\\bigdata_and_hadoop\\DevInsideYou\\project\\project"
                 ]
             },
             "mainClass": [

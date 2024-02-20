@@ -1,7 +1,10 @@
 package com.suanki.tutorials.devInsideYou.caseClasses
 
+// default parameters are private[this] val name:String...
+//but in case class it's val name:String....
+//all case class i
 final class Human(
-    val name: String, // default private[this] val name
+    val name: String,
     val age: Int,
     val isMale: Boolean
 ) extends Product {
@@ -39,6 +42,7 @@ final class Human(
 }
 
 //object Human extends Function3[String,Int,Boolean,Human]{
+// type x = Int => Int
 object Human extends ((String, Int, Boolean) => Human) {
 
   override def apply(
@@ -48,6 +52,23 @@ object Human extends ((String, Int, Boolean) => Human) {
   ): Human = new Human(name, age, isMale)
 
   override def toString: String = s"Human"
+
+  type Answer[+A] = {
+    def isEmpty: Boolean
+    def get: A
+  }
+
+  def unapply(human: Human): Answer[(String, Int, Boolean)] = {
+    if (human == null)
+      NotReally
+    else
+      SureThing(
+        human.name,
+        human.age,
+        human.isMale
+      )
+  }
+
 }
 
 final case class Person(name: String, age: Int, isMale: Boolean) {
@@ -55,13 +76,7 @@ final case class Person(name: String, age: Int, isMale: Boolean) {
 
 }
 
-object CaseClassPartOne {
-
-  def main(args: Array[String]): Unit = {
-    println("=" * 50)
-    code(args)
-    println("=" * 50)
-  }
+object ConvertClassAsOfCaseClass {
 
   def code(args: Array[String]): Unit = {
 
@@ -92,7 +107,7 @@ object CaseClassPartOne {
     )
     println(
       "contain=>" + personOne.contains(
-        Person("Bob", age = 33, isMale = true)
+        Person("Bob", age = 33, isMale = false)
       )
     )
 
@@ -141,7 +156,7 @@ object CaseClassPartOne {
     )
     println(
       "contain=>" + HumanSet.contains(
-        Human("Bob", age = 33, isMale = true)
+        Human("Bob", age = 33, isMale = false)
       )
     )
 
@@ -153,9 +168,10 @@ object CaseClassPartOne {
     println(human.productPrefix)
     println(human.productIterator.mkString(", "))
 
-//    human match {
-//      case Human(n,a,i) => println(s"Hello $n, $a, $i")
-//    }
+    // either human should be case class or it should contain unapply method
+    human match {
+      case Human(n, a, i) => println(s"Hello:Pattern matching works: $n, $a, $i")
+    }
 
     println()
 
